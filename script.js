@@ -5,29 +5,25 @@ const isResultPage = document.getElementById('result-page');
 
 let currentQuestion = null;
 
-/* ============================
-   SHUFFLE FUNCTION (CORE)
-   ============================ */
+/* ========= SHUFFLE ========= */
 function shuffleOptions(options, correctIndex) {
-    const temp = options.map((text, index) => ({
+    const arr = options.map((text, i) => ({
         text,
-        isCorrect: index === correctIndex
+        isCorrect: i === correctIndex
     }));
 
-    for (let i = temp.length - 1; i > 0; i--) {
+    for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [temp[i], temp[j]] = [temp[j], temp[i]];
+        [arr[i], arr[j]] = [arr[j], arr[i]];
     }
 
     return {
-        options: temp.map(o => o.text),
-        correctIndex: temp.findIndex(o => o.isCorrect)
+        options: arr.map(o => o.text),
+        correctIndex: arr.findIndex(o => o.isCorrect)
     };
 }
 
-/* ============================
-   QUIZ PAGE
-   ============================ */
+/* ========= QUIZ PAGE ========= */
 if (isQuizPage) {
     let currentQuestionIndex = 0;
     let score = 0;
@@ -46,11 +42,7 @@ if (isQuizPage) {
 
     function loadQuestion() {
         const base = quizData[currentQuestionIndex];
-
-        const shuffled = shuffleOptions(
-            base.options,
-            base.correctIndex
-        );
+        const shuffled = shuffleOptions(base.options, base.correctIndex);
 
         currentQuestion = {
             ...base,
@@ -64,30 +56,29 @@ if (isQuizPage) {
         categoryBadge.innerText = currentQuestion.category;
         scenarioText.innerText = currentQuestion.scenario;
         progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
-
         progressFill.style.width =
             `${(currentQuestionIndex / quizData.length) * 100}%`;
 
-        currentQuestion.options.forEach((option, index) => {
+        currentQuestion.options.forEach((opt, i) => {
             const btn = document.createElement('button');
-            btn.innerText = option;
-            btn.classList.add('btn', 'option-btn');
-            btn.onclick = () => selectOption(index, btn);
+            btn.className = 'btn option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => selectOption(i, btn);
             optionsContainer.appendChild(btn);
         });
     }
 
-    function selectOption(selectedIndex, selectedBtn) {
-        const allBtns = document.querySelectorAll('.option-btn');
-        allBtns.forEach(b => b.disabled = true);
+    function selectOption(index, btn) {
+        const buttons = document.querySelectorAll('.option-btn');
+        buttons.forEach(b => b.disabled = true);
 
-        if (selectedIndex === currentQuestion.correctIndex) {
+        if (index === currentQuestion.correctIndex) {
             score++;
-            selectedBtn.classList.add('correct');
+            btn.classList.add('correct');
             feedbackTitle.innerText = "✅ That's Correct!";
         } else {
-            selectedBtn.classList.add('wrong');
-            allBtns[currentQuestion.correctIndex].classList.add('correct');
+            btn.classList.add('wrong');
+            buttons[currentQuestion.correctIndex].classList.add('correct');
             feedbackTitle.innerText = "❌ Oops!";
         }
 
@@ -105,4 +96,3 @@ if (isQuizPage) {
         }
     };
 }
-
