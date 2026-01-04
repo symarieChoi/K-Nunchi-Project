@@ -95,4 +95,14 @@ if (isQuizPage) {
             window.location.href = 'result.html';
         }
     };
+    
 }
+const tryAgainBtn = document.getElementById("try-again");
+
+if (tryAgainBtn) {
+  tryAgainBtn.addEventListener("click", () => {
+    localStorage.removeItem("score");
+    window.location.href = "quiz.html";
+  });
+}
+
