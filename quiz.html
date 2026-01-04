@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Quiz - K-Nunchi</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - K-Nunchi</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div class="app-container">
+        <div id="quiz-page" class="screen active">
+            <div class="header">
+                <span id="category-badge">Category</span>
+                <span id="progress-text">1 / 10</span>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
 
-<div class="app-container">
-  <div id="quiz-box">
-    <div id="category"></div>
-    <div id="progress"></div>
-    <h2 id="question">Loading question...</h2>
-    <div id="answers"></div>
-  </div>
-</div>
+            <div class="scenario-box">
+                <p id="scenario-text">Loading question...</p>
+            </div>
 
-<script type="module" src="script.js"></script>
+            <div id="options-container" class="options-list">
+            </div>
+
+            <div id="feedback-area" class="feedback hidden">
+                <h3 id="feedback-title">Correct!</h3>
+                <p id="explanation-text">Explanation...</p>
+                <button id="next-btn" class="btn next-btn">Next Scenario</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
 </body>
+
 </html>
