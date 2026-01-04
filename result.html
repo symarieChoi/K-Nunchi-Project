@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - K-Nunchi</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js"
+        integrity="sha384-l+xbElFSnP5k7wJKz52J1GOvbIV1AAXmni7BN1fHmd240DH1P35ag27yc0ZRqJOu"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <div id="result-page" class="screen active">
+            <h2>Quiz Completed!</h2>
+            <div class="score-box">
+                Your Score: <span id="final-score">0</span> / 10
+            </div>
+
+            <div class="level-card">
+                <h3 id="level-title">Loading...</h3>
+                <p id="level-desc">Analyzing your Nunchi...</p>
+            </div>
+
+            <div class="level-guide-box">
+                <h4>🏆 Level Guide</h4>
+                <ul>
+                    <li>
+                        <span class="guide-level">Almost Korean</span>
+                        <span class="guide-score">9-10 pts</span>
+                    </li>
+                    <li>
+                        <span class="guide-level">K-life Pro</span>
+                        <span class="guide-score">7-8 pts</span>
+                    </li>
+                    <li>
+                        <span class="guide-level">Loading Nunchi...</span>
+                        <span class="guide-score">4-6 pts</span>
+                    </li>
+                    <li>
+                        <span class="guide-level">Tourist</span>
+                        <span class="guide-score">0-3 pts</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="share-box" style="margin-bottom: 20px; text-align: center;">
+                <p style="margin-bottom: 10px; color: #666;">Share your result:</p>
+                <button id="kakao-share-btn" class="btn"
+                    style="background-color: #FEE500; color: #3c1e1e; margin-bottom: 10px;">
+                    💬 Share via KakaoTalk
+                </button>
+                <button id="web-share-btn" class="btn" style="background-color: #e9ecef; color: #333;">
+                    🔗 Share Link / Copy
+                </button>
+            </div>
+
+            <button id="restart-btn" class="btn primary-btn">Try Again</button>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
