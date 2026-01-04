@@ -5,7 +5,7 @@ const isQuizPage = document.getElementById('quiz-page');
 const isResultPage = document.getElementById('result-page');
 
 /* =======================================================
-   PART 1. 퀴즈 페이지 로직 (quiz.html)
+    PART 1. 퀴즈 페이지 로직 (quiz.html)
    ======================================================= */
 if (isQuizPage) {
     let currentQuestionIndex = 0;
