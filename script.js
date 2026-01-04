@@ -1,121 +1,98 @@
-import { quizData, resultLevels } from "./data.js";
+import { quizData, resultLevels } from './data.js';
 
-document.addEventListener("DOMContentLoaded", () => {
+const isQuizPage = document.getElementById('quiz-page');
+const isResultPage = document.getElementById('result-page');
 
-  /* =======================
-     QUIZ PAGE LOGIC
-  ======================= */
-  const questionEl = document.getElementById("question");
+let currentQuestion = null;
 
-  if (questionEl) {
-    let currentIndex = 0;
+/* ========= SHUFFLE ========= */
+function shuffleOptions(options, correctIndex) {
+    const arr = options.map((text, i) => ({
+        text,
+        isCorrect: i === correctIndex
+    }));
+
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    return {
+        options: arr.map(o => o.text),
+        correctIndex: arr.findIndex(o => o.isCorrect)
+    };
+}
+
+/* ========= QUIZ PAGE ========= */
+if (isQuizPage) {
+    let currentQuestionIndex = 0;
     let score = 0;
 
-    function shuffle(arr) {
-      return arr.sort(() => Math.random() - 0.5);
-    }
-
-    const questions = shuffle([...quizData]);
-
-    function loadQuestion() {
-      const q = questions[currentIndex];
-
-      document.getElementById("category").textContent = q.category;
-      document.getElementById("progress").textContent =
-        `${currentIndex + 1} / ${questions.length}`;
-
-      questionEl.textContent = q.question;
-
-      const answersDiv = document.getElementById("answers");
-      answersDiv.innerHTML = "";
-
-      const answers = q.answers.map((text, idx) => ({
-        text,
-        isCorrect: idx === q.correctIndex
-      }));
-
-      shuffle(answers);
-
-      answers.forEach(ans => {
-        const btn = document.createElement("button");
-        btn.className = "answer-btn";
-        btn.textContent = ans.text;
-
-        btn.addEventListener("click", () => {
-          if (ans.isCorrect) score++;
-          currentIndex++;
-
-          if (currentIndex < questions.length) {
-            loadQuestion();
-          } else {
-            localStorage.setItem("score", score);
-            window.location.href = "result.html";
-          }
-        });
-
-        answersDiv.appendChild(btn);
-      });
-    }
+    const scenarioText = document.getElementById('scenario-text');
+    const optionsContainer = document.getElementById('options-container');
+    const progressText = document.getElementById('progress-text');
+    const progressFill = document.getElementById('progress-fill');
+    const categoryBadge = document.getElementById('category-badge');
+    const feedbackArea = document.getElementById('feedback-area');
+    const feedbackTitle = document.getElementById('feedback-title');
+    const explanationText = document.getElementById('explanation-text');
+    const nextBtn = document.getElementById('next-btn');
 
     loadQuestion();
-  }
 
-  /* =======================
-     RESULT PAGE LOGIC
-  ======================= */
-  const scoreEl = document.getElementById("final-score");
+    function loadQuestion() {
+        const base = quizData[currentQuestionIndex];
+        const shuffled = shuffleOptions(base.options, base.correctIndex);
 
-  if (scoreEl) {
-    const score = parseInt(localStorage.getItem("score")) || 0;
-    scoreEl.textContent = score;
+        currentQuestion = {
+            ...base,
+            options: shuffled.options,
+            correctIndex: shuffled.correctIndex
+        };
 
-    const level = resultLevels.find(
-      l => score >= l.min && score <= l.max
-    );
+        feedbackArea.classList.add('hidden');
+        optionsContainer.innerHTML = '';
 
-    if (level) {
-      document.getElementById("level-title").textContent = level.title;
-      document.getElementById("level-desc").textContent = level.description;
-    }
+        categoryBadge.innerText = currentQuestion.category;
+        scenarioText.innerText = currentQuestion.scenario;
+        progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
+        progressFill.style.width =
+            `${(currentQuestionIndex / quizData.length) * 100}%`;
 
-    // ✅ TRY AGAIN BUTTON (NOW GUARANTEED TO WORK)
-    const restartBtn = document.getElementById("restart-btn");
-    restartBtn.addEventListener("click", () => {
-      localStorage.removeItem("score");
-      window.location.href = "quiz.html";
-    });
-
-    // ✅ KAKAO SHARE (RESTORED)
-    if (window.Kakao && !Kakao.isInitialized()) {
-      Kakao.init("YOUR_KAKAO_APP_KEY");
-    }
-
-    const kakaoBtn = document.getElementById("kakao-share-btn");
-    if (kakaoBtn) {
-      kakaoBtn.addEventListener("click", () => {
-        Kakao.Share.sendDefault({
-          objectType: "text",
-          text: `I scored ${score}/10 on the K-Nunchi Quiz! 🇰🇷`,
-          link: {
-            mobileWebUrl: window.location.origin,
-            webUrl: window.location.origin
-          }
+        currentQuestion.options.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => selectOption(i, btn);
+            optionsContainer.appendChild(btn);
         });
-      });
     }
 
-    // ✅ WEB SHARE / COPY
-    const webShareBtn = document.getElementById("web-share-btn");
-    if (webShareBtn) {
-      webShareBtn.addEventListener("click", async () => {
-        const url = window.location.href;
-        try {
-          await navigator.clipboard.writeText(url);
-          alert("Link copied!");
-        } catch {
-          alert(url);
+    function selectOption(index, btn) {
+        const buttons = document.querySelectorAll('.option-btn');
+        buttons.forEach(b => b.disabled = true);
+
+        if (index === currentQuestion.correctIndex) {
+            score++;
+            btn.classList.add('correct');
+            feedbackTitle.innerText = "✅ That's Correct!";
+        } else {
+            btn.classList.add('wrong');
+            buttons[currentQuestion.correctIndex].classList.add('correct');
+            feedbackTitle.innerText = "❌ Oops!";
         }
-      });
+
+        explanationText.innerText = currentQuestion.explanation;
+        feedbackArea.classList.remove('hidden');
     }
-  }
-});
+
+    nextBtn.onclick = () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            localStorage.setItem('quizScore', score);
+            window.location.href = 'result.html';
+        }
+    };
+}
