@@ -19,38 +19,71 @@ if (isQuizPage) {
     const feedbackArea = document.getElementById('feedback-area');
     const feedbackTitle = document.getElementById('feedback-title');
     const explanationText = document.getElementById('explanation-text');
-    const nextBtn = document.getElementById('next-btn');
+    const nextBtn = document.getElementById('next-btn'); 
 
-    // 퀴즈 시작
-    loadQuestion();
+    function shuffleOptions(options, correctIndex) {
+    const mapped = options.map((text, index) => ({
+        text,
+        isCorrect: index === correctIndex
+    }));
 
-    function loadQuestion() {
-        const currentData = quizData[currentQuestionIndex];
-
-        // UI 초기화
-        feedbackArea.classList.add('hidden');
-        optionsContainer.innerHTML = '';
-
-        // 데이터 채우기
-        categoryBadge.innerText = currentData.category;
-        scenarioText.innerText = currentData.scenario;
-        progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
-
-        const progressPercent = ((currentQuestionIndex) / quizData.length) * 100;
-        progressFill.style.width = `${progressPercent}%`;
-
-        // 선택지 버튼 만들기
-        currentData.options.forEach((option, index) => {
-            const button = document.createElement('button');
-            button.innerText = option;
-            button.classList.add('btn', 'option-btn');
-            button.addEventListener('click', () => selectOption(index, button));
-            optionsContainer.appendChild(button);
-        });
+    // Fisher–Yates shuffle
+    for (let i = mapped.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [mapped[i], mapped[j]] = [mapped[j], mapped[i]];
     }
 
+    const newCorrectIndex = mapped.findIndex(opt => opt.isCorrect);
+    const newOptions = mapped.map(opt => opt.text);
+
+    return {
+        options: newOptions,
+        correctIndex: newCorrectIndex
+    };
+}
+
+
+function loadQuestion() {
+    const originalData = quizData[currentQuestionIndex];
+
+    // Shuffle options safely
+    const shuffled = shuffleOptions(
+        originalData.options,
+        originalData.correctIndex
+    );
+
+    // Save shuffled data temporarily
+    currentQuestion = {
+        ...originalData,
+        options: shuffled.options,
+        correctIndex: shuffled.correctIndex
+    };
+
+    // UI reset
+    feedbackArea.classList.add('hidden');
+    optionsContainer.innerHTML = '';
+
+    // Fill UI
+    categoryBadge.innerText = currentQuestion.category;
+    scenarioText.innerText = currentQuestion.scenario;
+    progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
+
+    const progressPercent = (currentQuestionIndex / quizData.length) * 100;
+    progressFill.style.width = `${progressPercent}%`;
+
+    // Render buttons
+    currentQuestion.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.innerText = option;
+        button.classList.add('btn', 'option-btn');
+        button.addEventListener('click', () => selectOption(index, button));
+        optionsContainer.appendChild(button);
+    });
+}
+
+
     function selectOption(selectedIndex, selectedButton) {
-        const currentData = quizData[currentQuestionIndex];
+        const currentData = currentQuestion;
         const correctIndex = currentData.correctIndex;
         const allButtons = document.querySelectorAll('.option-btn');
 
