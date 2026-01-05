@@ -156,37 +156,42 @@ if (isResultPage) {
         };
     }
 
-    // 5. 카카오톡 공유 기능 (API 키 필요)
+    // 5. 카카오톡 공유 기능
     const kakaoBtn = document.getElementById('kakao-share-btn');
     if (kakaoBtn) {
-        // SDK 초기화
         if (window.Kakao && !Kakao.isInitialized()) {
             try {
-                Kakao.init('c5ced87e2904c7f993809b80c926c5c3');
+                Kakao.init('YOUR_KAKAO_API_KEY'); // 본인 키 확인
             } catch (e) { console.log('Kakao SDK error'); }
         }
 
         kakaoBtn.onclick = () => {
             if (!window.Kakao || !Kakao.isInitialized()) return;
 
+            // [수정 핵심] 친구가 눌렀을 때 이동할 주소 (결과 페이지 주소를 index.html로 교체)
+            // 이렇게 하면 친구는 퀴즈 첫 화면으로 이동하게 됩니다.
+            const shareUrl = window.location.href.replace('result.html', 'index.html');
+
             Kakao.Share.sendDefault({
                 objectType: 'feed',
                 content: {
                     title: '🇰🇷 K-Nunchi Quiz Result',
                     description: `My Level: ${finalLevel.title}\nScore: ${finalScore}/10`,
-                    imageUrl: 'https://cdn-icons-png.flaticon.com/512/5112/5112002.png',
+                    imageUrl: 'https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=800&auto=format&fit=crop', // 원하는 이미지 주소
                     link: {
-                        mobileWebUrl: window.location.href,
-                        webUrl: window.location.href,
+                        mobileWebUrl: shareUrl, // 수정된 주소 사용
+                        webUrl: shareUrl,
                     },
                 },
-                buttons: [{
-                    title: 'Take Quiz',
-                    link: {
-                        mobileWebUrl: window.location.origin + '/index.html',
-                        webUrl: window.location.origin + '/index.html',
+                buttons: [
+                    {
+                        title: '나도 풀어보기',
+                        link: {
+                            mobileWebUrl: shareUrl, // 수정된 주소 사용
+                            webUrl: shareUrl,
+                        },
                     },
-                }]
+                ]
             });
         };
     }
