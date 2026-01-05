@@ -175,7 +175,7 @@ if (isResultPage) {
                 objectType: 'feed',
                 content: {
                     title: '🇰🇷 K-Nunchi Quiz Result',
-                    description: `My Level: ${finalLevel.title}\nScore: ${finalScore}/10`,
+                    description: `I scored ${finalScore}/10 (${finalLevel.title}). Can you beat my score?`,
                     imageUrl: 'https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=800&auto=format&fit=crop', // 원하는 이미지 주소
                     link: {
                         mobileWebUrl: shareUrl, // 수정된 주소 사용
