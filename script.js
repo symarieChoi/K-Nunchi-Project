@@ -5,7 +5,7 @@ const isResultPage = document.getElementById('result-page');
 
 let currentQuestion = null;
 
-/* ========= SHUFFLE ========= */
+/* ========= SHUFFLE FUNCTION (팀원이 추가한 기능 유지) ========= */
 function shuffleOptions(options, correctIndex) {
     const arr = options.map((text, i) => ({
         text,
@@ -23,7 +23,7 @@ function shuffleOptions(options, correctIndex) {
     };
 }
 
-/* ========= QUIZ PAGE ========= */
+/* ========= PART 1. QUIZ PAGE LOGIC ========= */
 if (isQuizPage) {
     let currentQuestionIndex = 0;
     let score = 0;
@@ -42,6 +42,7 @@ if (isQuizPage) {
 
     function loadQuestion() {
         const base = quizData[currentQuestionIndex];
+        // 셔플 기능 적용
         const shuffled = shuffleOptions(base.options, base.correctIndex);
 
         currentQuestion = {
@@ -52,12 +53,12 @@ if (isQuizPage) {
 
         feedbackArea.classList.add('hidden');
         optionsContainer.innerHTML = '';
+        nextBtn.disabled = false; // 버튼 활성화
 
         categoryBadge.innerText = currentQuestion.category;
         scenarioText.innerText = currentQuestion.scenario;
         progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
-        progressFill.style.width =
-            `${(currentQuestionIndex / quizData.length) * 100}%`;
+        progressFill.style.width = `${(currentQuestionIndex / quizData.length) * 100}%`;
 
         currentQuestion.options.forEach((opt, i) => {
             const btn = document.createElement('button');
@@ -76,10 +77,12 @@ if (isQuizPage) {
             score++;
             btn.classList.add('correct');
             feedbackTitle.innerText = "✅ That's Correct!";
+            feedbackTitle.style.color = "var(--correct-color)"; // 스타일 추가
         } else {
             btn.classList.add('wrong');
             buttons[currentQuestion.correctIndex].classList.add('correct');
             feedbackTitle.innerText = "❌ Oops!";
+            feedbackTitle.style.color = "var(--wrong-color)"; // 스타일 추가
         }
 
         explanationText.innerText = currentQuestion.explanation;
@@ -91,8 +94,101 @@ if (isQuizPage) {
         if (currentQuestionIndex < quizData.length) {
             loadQuestion();
         } else {
+            // 점수 저장 후 이동
             localStorage.setItem('quizScore', score);
             window.location.href = 'result.html';
         }
     };
+}
+
+/* ========= PART 2. RESULT PAGE LOGIC (이 부분이 빠져있었습니다!) ========= */
+if (isResultPage) {
+    // 1. 점수 불러오기
+    const savedScore = localStorage.getItem('quizScore');
+    const finalScore = savedScore ? parseInt(savedScore) : 0;
+
+    // 점수 화면 표시
+    document.getElementById('final-score').innerText = finalScore;
+
+    // 2. 레벨 계산 (data.js의 기준 사용)
+    let finalLevel = resultLevels[0];
+    for (let level of resultLevels) {
+        if (finalScore >= level.minScore) {
+            finalLevel = level;
+        }
+    }
+
+    // 레벨 텍스트 표시
+    document.getElementById('level-title').innerText = finalLevel.title;
+    document.getElementById('level-desc').innerText = finalLevel.description;
+
+    // 3. Try Again 버튼 기능
+    const restartBtn = document.getElementById('restart-btn');
+    if (restartBtn) {
+        restartBtn.onclick = () => {
+            localStorage.removeItem('quizScore'); // 점수 초기화
+            window.location.href = 'index.html';
+        };
+    }
+
+    // 4. Copy Link (공유) 버튼 기능
+    const webShareBtn = document.getElementById('web-share-btn');
+    if (webShareBtn) {
+        webShareBtn.onclick = async () => {
+            const shareData = {
+                title: 'K-Nunchi Quiz',
+                text: `I scored ${finalScore}/10 (${finalLevel.title}) on the Korean Manners Quiz!`,
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                // 모바일 공유
+                try { await navigator.share(shareData); } catch (err) { }
+            } else {
+                // PC 클립보드 복사
+                try {
+                    await navigator.clipboard.writeText(`${shareData.text}\n${shareData.url}`);
+                    alert('Link copied to clipboard!');
+                } catch (err) {
+                    alert('Copy failed (Please copy URL manually)');
+                }
+            }
+        };
+    }
+
+    // 5. 카카오톡 공유 기능 (API 키 필요)
+    const kakaoBtn = document.getElementById('kakao-share-btn');
+    if (kakaoBtn) {
+        // SDK 초기화
+        if (window.Kakao && !Kakao.isInitialized()) {
+            try {
+                // 👇 [중요] 여기에 본인 키를 다시 넣어야 합니다!
+                Kakao.init('YOUR_KAKAO_API_KEY');
+            } catch (e) { console.log('Kakao SDK error'); }
+        }
+
+        kakaoBtn.onclick = () => {
+            if (!window.Kakao || !Kakao.isInitialized()) return;
+
+            Kakao.Share.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: '🇰🇷 K-Nunchi Quiz Result',
+                    description: `My Level: ${finalLevel.title}\nScore: ${finalScore}/10`,
+                    imageUrl: 'https://cdn-icons-png.flaticon.com/512/5112/5112002.png',
+                    link: {
+                        mobileWebUrl: window.location.href,
+                        webUrl: window.location.href,
+                    },
+                },
+                buttons: [{
+                    title: 'Take Quiz',
+                    link: {
+                        mobileWebUrl: window.location.origin + '/index.html',
+                        webUrl: window.location.origin + '/index.html',
+                    },
+                }]
+            });
+        };
+    }
 }
