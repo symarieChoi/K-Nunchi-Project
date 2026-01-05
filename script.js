@@ -101,7 +101,7 @@ if (isQuizPage) {
     };
 }
 
-/* ========= PART 2. RESULT PAGE LOGIC (이 부분이 빠져있었습니다!) ========= */
+/* ========= PART 2. RESULT PAGE LOGIC ========= */
 if (isResultPage) {
     // 1. 점수 불러오기
     const savedScore = localStorage.getItem('quizScore');
@@ -162,8 +162,7 @@ if (isResultPage) {
         // SDK 초기화
         if (window.Kakao && !Kakao.isInitialized()) {
             try {
-                // 👇 [중요] 여기에 본인 키를 다시 넣어야 합니다!
-                Kakao.init('YOUR_KAKAO_API_KEY');
+                Kakao.init('c5ced87e2904c7f993809b80c926c5c3');
             } catch (e) { console.log('Kakao SDK error'); }
         }
 
