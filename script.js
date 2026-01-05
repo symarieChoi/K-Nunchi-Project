@@ -161,7 +161,7 @@ if (isResultPage) {
     if (kakaoBtn) {
         if (window.Kakao && !Kakao.isInitialized()) {
             try {
-                Kakao.init('YOUR_KAKAO_API_KEY'); // 본인 키 확인
+                Kakao.init('c5ced87e2904c7f993809b80c926c5c3'); // 본인 키 확인
             } catch (e) { console.log('Kakao SDK error'); }
         }
 
