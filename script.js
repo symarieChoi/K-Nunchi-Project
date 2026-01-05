@@ -5,7 +5,7 @@ const isResultPage = document.getElementById('result-page');
 
 let currentQuestion = null;
 
-/* ========= SHUFFLE FUNCTION (팀원이 추가한 기능 유지) ========= */
+/* ========= SHUFFLE FUNCTION ========= */
 function shuffleOptions(options, correctIndex) {
     const arr = options.map((text, i) => ({
         text,
@@ -168,8 +168,7 @@ if (isResultPage) {
         kakaoBtn.onclick = () => {
             if (!window.Kakao || !Kakao.isInitialized()) return;
 
-            // [수정 핵심] 친구가 눌렀을 때 이동할 주소 (결과 페이지 주소를 index.html로 교체)
-            // 이렇게 하면 친구는 퀴즈 첫 화면으로 이동하게 됩니다.
+            // 친구가 눌렀을 때 이동할 주소 (결과 페이지 주소를 index.html로 교체)
             const shareUrl = window.location.href.replace('result.html', 'index.html');
 
             Kakao.Share.sendDefault({
