@@ -342,7 +342,7 @@ body::before {
     right: 30px;
     width: 300px;
     height: 300px;
-    background-image: url("./assets/hanbok-characters.png");
+    background-image: url("./hanbok-characters.png");
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.18;
