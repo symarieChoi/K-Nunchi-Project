@@ -1,261 +1,245 @@
-/* 색상 컨트롤 */
+/* =========================
+   GLOBAL VARIABLES
+========================= */
 :root {
-    /* 메인 테마 색상(버튼, 타이틀 등) */
-    --primary-color: #3b5bdb;
-    /* 강조 색상 */
-    --accent-color: #f03e3e;
-    /* 전체 배경(현재 회색) */
-    --bg-color: #f8f9fa;
-    /* 퀴즈 박스(카드) 배경 */
-    --card-bg: #ffffff;
-    --text-color: #333;
-    --gray-text: #666;
-    /* 정답/오답 */
-    --correct-color: #40c057;
-    --wrong-color: #fa5252;
+  --bg-main: #f9fafb;
+  --card-bg: #ffffff;
+
+  --primary: #2563eb;      /* calm Korean-app blue */
+  --accent: #f43f5e;       /* subtle Korean red */
+
+  --text-main: #111827;
+  --text-sub: #6b7280;
+
+  --border-soft: #e5e7eb;
+
+  --correct-bg: #f0fdf4;
+  --correct-border: #22c55e;
+
+  --wrong-bg: #fef2f2;
+  --wrong-border: #ef4444;
 }
 
+/* =========================
+   BASE RESET
+========================= */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Noto Sans KR", sans-serif;
 }
 
-/* 전체 레이아웃(body, .app-container): 웹사이트의 뼈대와 위치 잡기 */
 body {
-    background-color: var(--bg-color);
-    /* 화면 정가운데에 퀴즈 박스를 놓기 위한 Flex 설정 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+  background:
+    radial-gradient(circle at top left,
+      rgba(37, 99, 235, 0.04),
+      transparent 40%),
+    var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* =========================
+   APP CONTAINER
+========================= */
 .app-container {
-    background-color: var(--card-bg);
-    width: 100%;
-    /* 퀴즈 박스의 최대 너비 */
-    max-width: 600px;
-    /* 모서리 둥글게 */
-    border-radius: 16px;
-    /* 그림자 효과 */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    overflow: hidden;
-    position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 16px;
 }
 
-.screen {
-    display: block;
-    animation: fadeIn 0.5s ease;
+/* =========================
+   QUIZ CARD
+========================= */
+.quiz-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* =========================
+   HEADER
+========================= */
+.quiz-header {
+  margin-bottom: 20px;
 }
 
-h1,
-h2 {
-    text-align: center;
-    color: var(--primary-color);
-    margin-bottom: 20px;
+.category-badge {
+  display: inline-block;
+  background: #eef2ff;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 10px;
 }
 
-.score-box {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 20px 0;
+.question-counter {
+  font-size: 14px;
+  color: var(--text-sub);
 }
 
-/* 결과 페이지의 레벨 설명 박스 */
-.level-card {
-    background: #e7f5ff;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* 모든 버튼의 공통 모양 (크기, 폰트 굵기 등) */
-.btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-weight: 600;
-    text-decoration: none;
-    /* 링크 밑줄 제거 */
-    text-align: center;
-}
-
-/* 링크를 Flex로 만들어서 텍스트 중앙 정렬 확실하게 */
-a.btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 주요 버튼 색상('Start', 'Next', 'Try Again') */
-.primary-btn {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.primary-btn:hover {
-    background-color: #2b42a3;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    color: var(--gray-text);
-    font-size: 0.9rem;
-}
-
-#category-badge {
-    background-color: #eee;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: bold;
-    color: var(--text-color);
-}
-
-/* 상단 진행 바의 회색 배경 */
+/* =========================
+   PROGRESS BAR
+========================= */
 .progress-bar {
-    width: 100%;
-    height: 6px;
-    background-color: #eee;
-    border-radius: 3px;
-    margin-bottom: 25px;
-    overflow: hidden;
+  width: 100%;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 14px 0 24px;
 }
 
-/* 실제 게이지가 차오르는 색상 부분 */
-#progress-fill {
-    height: 100%;
-    background-color: var(--primary-color);
-    width: 0%;
-    transition: width 0.3s ease;
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    var(--primary),
+    var(--accent)
+  );
+  width: 0%;
+  transition: width 0.3s ease;
 }
 
-.scenario-box {
-    margin-bottom: 25px;
+/* =========================
+   QUESTION TEXT
+========================= */
+.scenario-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-sub);
+  margin-bottom: 18px;
 }
 
-/* 문제 텍스트 (시나리오) */
-#scenario-text {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: var(--text-color);
-    white-space: pre-line;
+.question-text {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 22px;
 }
 
-/* 4지선다 선택지 버튼 모양 */
+/* =========================
+   ANSWER OPTIONS
+========================= */
+.options-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .option-btn {
-    background-color: white;
-    border: 2px solid #e9ecef;
-    color: var(--text-color);
-    margin-bottom: 12px;
-    text-align: left;
+  width: 100%;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
 }
 
-.option-btn:hover:not(:disabled) {
-    border-color: var(--primary-color);
-    background-color: #f8f9fa;
+.option-btn:hover {
+  background: #f8fafc;
 }
 
 .option-btn.correct {
-    background-color: var(--correct-color);
-    color: white;
-    border-color: var(--correct-color);
+  background: var(--correct-bg);
+  border-color: var(--correct-border);
 }
 
 .option-btn.wrong {
-    background-color: var(--wrong-color);
-    color: white;
-    border-color: var(--wrong-color);
+  background: var(--wrong-bg);
+  border-color: var(--wrong-border);
 }
 
-/* 정답/오답 해설 박스 (퀴즈 하단) */
-.feedback {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f1f3f5;
-    border-radius: 8px;
-    border-left: 5px solid var(--primary-color);
+/* =========================
+   NEXT / ACTION BUTTON
+========================= */
+.action-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 18px;
+
+  background: var(--primary);
+  color: white;
+
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
 }
 
-.feedback.hidden {
-    display: none;
+.action-btn:hover {
+  background: #1e4fd8;
 }
 
-#feedback-title {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
+/* =========================
+   RESULT SCREEN
+========================= */
+.result-container {
+  text-align: center;
 }
 
-.next-btn {
-    background-color: var(--primary-color);
-    color: white;
-    margin-top: 15px;
+.score-text {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.level-guide-box {
-    background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 25px;
-    text-align: left;
-    font-size: 0.9rem;
+.level-card {
+  background: linear-gradient(
+    135deg,
+    #eef2ff,
+    #fdf2f8
+  );
+  border-radius: 20px;
+  padding: 22px;
+  margin: 20px 0;
 }
 
-.level-guide-box h4 {
-    text-align: center;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    font-size: 1rem;
+.level-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
-.level-guide-box ul {
-    list-style: none;
-    padding: 0;
+.level-desc {
+  font-size: 14px;
+  color: var(--text-sub);
 }
 
-.level-guide-box li {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px dashed #dee2e6;
-    color: #495057;
+/* =========================
+   SHARE BUTTON
+========================= */
+.share-btn {
+  background: white;
+  border: 1px solid var(--border-soft);
+  color: var(--text-main);
 }
 
-.level-guide-box li:last-child {
-    border-bottom: none;
+.share-btn:hover {
+  background: #f9fafb;
 }
 
-.guide-level {
-    font-weight: 600;
-}
-
-.guide-score {
-    color: var(--primary-color);
-    font-weight: bold;
+/* =========================
+   UTILITIES
+========================= */
+.hidden {
+  display: none;
 }
