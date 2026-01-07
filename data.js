@@ -1,18 +1,21 @@
-// data.js
+// data.js: 모듈 시스템
+// 다른 파일(ex. script.js)에서 쓸 수 있도록 데이터를 내보내는 모듈
 
-export const quizData = [
+// export: 이 변수를 다른 파일에서도 사용할 수 있게 공개
+// const: 한 번 선언되면 바뀌지 않는 상수
+export const quizData = [ // 문제 은행
     {
-        id: 1,
-        category: "Cafe Etiquette",
-        scenario: "You agreed to meet a friend at a nice cafe in Seoul. Your friend arrived 30 minutes early and is already drinking a coffee. You arrive and sit down at the table across from them. You aren't very thirsty.\n\nWhat is the proper etiquette in this situation?",
-        options: [
+        id: 1, // 문제 고유 번호
+        category: "Cafe Etiquette", // 카테고리
+        scenario: "You agreed to meet a friend at a nice cafe in Seoul. Your friend arrived 30 minutes early and is already drinking a coffee.You arrive and sit down at the table across from them.You aren't very thirsty.\n\nWhat is the proper etiquette in this situation?", // 상황
+        options: [ // 보기 4개 (배열)
             "Just sit and chat without ordering anything.",
             "Go to the counter and order your own drink.",
             "Ask the staff for a free glass of tap water and sit down.",
             "Take a sip of your friend’s drink."
         ],
-        correctIndex: 1,
-        explanation: "In Korea, most cafes operate on a '1 Person, 1 Menu' (1인 1메뉴) rule. Since you are using the cafe's space, it is considered rude to occupy a seat without ordering anything for yourself."
+        correctIndex: 1, // 정답의 위치 (배열의 두 번째 항목이 정답임을 의미)
+        explanation: "In Korea, most cafes operate on a '1 Person, 1 Menu' (1인 1메뉴) rule. Since you are using the cafe's space, it is considered rude to occupy a seat without ordering anything for yourself." // 정답 또는 오답 후 보여줄 해설
     },
     {
         id: 2,
@@ -133,13 +136,13 @@ export const quizData = [
     }
 ];
 
-export const resultLevels = [
+export const resultLevels = [ // 결과 등급표
     {
         level: 1,
-        minScore: 0, // 0 ~ 3점
-        title: "Tourist",
-        description: "Welcome to Korea! You are just starting your journey. Keep observing!",
-        image: "level_1.png"
+        minScore: 0, // 0 ~ 3점 (최소 점수 기준)
+        title: "Tourist", // 등급 제목
+        description: "Welcome to Korea! You are just starting your journey. Keep observing!", // 결과 멘트
+        image: "level_1.png" // 보여줄 이미지 파일명
     },
     {
         level: 2,
