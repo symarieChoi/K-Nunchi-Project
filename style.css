@@ -65,11 +65,22 @@ body {
 /* =========================
    HEADINGS & TEXT
 ========================= */
+h1::before {
+    content: "🌸 ";
+}
+
+h1::after {
+    content: " 🌸";
+}
 h1,
 h2 {
     text-align: center;
     color: var(--primary-color);
     margin-bottom: 20px;
+}
+
+.score-box::before {
+    content: "🎀 ";
 }
 
 .score-box {
@@ -90,6 +101,11 @@ h2 {
     color: var(--gray-text);
     font-size: 0.9rem;
 }
+
+#category-badge::before {
+    content: "🇰🇷 ";
+}
+
 
 #category-badge {
     background-color: #eee;
@@ -125,6 +141,9 @@ h2 {
     margin-bottom: 25px;
 }
 
+#scenario-text::before {
+    content: "💬 ";
+}
 #scenario-text {
     font-size: 1.1rem;
     line-height: 1.7;
@@ -168,17 +187,22 @@ a.btn {
    OPTIONS
 ========================= */
 .option-btn {
-    background-color: white;
-    border: 2px solid #e9ecef;
-    color: var(--text-color);
-    margin-bottom: 12px;
+    background: #fff7ef;
+    border: 2px solid #e8d6c3;
+    color: #3f3a34;
+    margin-bottom: 14px;
     text-align: left;
+    border-radius: 22px;
+    font-size: 1.2rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Hover = pop */
 .option-btn:hover:not(:disabled) {
-    border-color: var(--primary-color);
-    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
 }
+
 
 .option-btn.correct {
     background-color: var(--correct-color);
@@ -320,13 +344,16 @@ h1, h2, h3 {
 
 /* Primary buttons */
 .primary-btn {
-    background: #b0895b;
+    background: #d4a373;
     color: #fffaf2;
-    border-radius: 18px;
+    border-radius: 26px;
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
 }
 
-.primary-btn:hover {
-    background: #9c7447;
+/* Emoji inside buttons */
+.primary-btn::after {
+    content: " ✨";
 }
 
 /* Level card */
