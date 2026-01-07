@@ -19,8 +19,9 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Gowun Dodum', 'Noto Sans KR', system-ui, sans-serif;
 }
+
 
 /* =========================
    LAYOUT
@@ -125,8 +126,8 @@ h2 {
 }
 
 #scenario-text {
-    font-size: 1.15rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.7;
     color: var(--text-color);
     white-space: pre-line;
 }
@@ -282,8 +283,8 @@ body {
 /* Titles */
 h1, h2, h3 {
     color: #3b332a;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
 }
 
 /* Category badge */
@@ -321,7 +322,7 @@ h1, h2, h3 {
 .primary-btn {
     background: #b0895b;
     color: #fffaf2;
-    border-radius: 16px;
+    border-radius: 18px;
 }
 
 .primary-btn:hover {
