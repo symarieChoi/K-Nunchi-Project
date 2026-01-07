@@ -364,7 +364,7 @@ body::before {
   width: 320px;
   height: 320px;
 
-  background-image: url("assets/hanbok-characters.png");
+  background-image: url("hanbok-characters.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
