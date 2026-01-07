@@ -345,7 +345,7 @@ body::before {
     background-image: url("./hanbok-characters.png");
     background-repeat: no-repeat;
     background-size: contain;
-    opacity: 0.18;
+    opacity: 0.45;
     pointer-events: none;
     z-index: -1;
 }
