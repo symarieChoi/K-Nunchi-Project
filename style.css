@@ -355,3 +355,21 @@ button:hover {
 .share-box button {
   margin-top: 10px;
 }
+/* Hanbok characters background decoration */
+body::before {
+  content: "";
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  width: 320px;
+  height: 320px;
+
+  background-image: url("assets/hanbok-characters.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  opacity: 0.15;          /* soft & modern */
+  pointer-events: none;  /* clickable UI stays usable */
+  z-index: -1;
+}
