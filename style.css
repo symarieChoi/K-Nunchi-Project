@@ -263,113 +263,99 @@ a.btn {
    Hanok-Modern Theme Override
    (Add to bottom of style.css)
 ========================= */
+/* =========================
+   Hanok-Modern Theme Override
+========================= */
 
-/* Background */
+/* Soft hanok background */
 body {
-  background: linear-gradient(180deg, #f6f1e7 0%, #ede6d8 100%);
-  color: #3f3a34;
+    background: linear-gradient(180deg, #f6f1e7 0%, #ede6d8 100%);
+    color: #3f3a34;
 }
 
-/* Main card / quiz container */
-.app-container,
-.screen,
-.quiz-container,
-.quiz-card {
-  background: #fffaf2;
-  border-radius: 22px;
-  box-shadow: 0 18px 40px rgba(90, 70, 40, 0.12);
+/* Main quiz card */
+.app-container {
+    background: #fffaf2;
+    border-radius: 22px;
+    box-shadow: 0 18px 40px rgba(90, 70, 40, 0.12);
 }
 
 /* Titles */
 h1, h2, h3 {
-  color: #3b332a;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+    color: #3b332a;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
-/* Description text */
-p {
-  color: #6b5f52;
-  line-height: 1.6;
+/* Scenario text */
+#scenario-text {
+    color: #3f3a34;
 }
 
-/* Category pill (top label) */
-#category {
-  background: #efe5d6;
-  color: #6a4e2f;
-  border-radius: 999px;
-  font-weight: 600;
-}
-
-/* Question text */
-#question {
-  color: #3f3a34;
-  font-weight: 600;
+/* Category badge */
+#category-badge {
+    background: #efe5d6;
+    color: #6a4e2f;
+    border-radius: 999px;
 }
 
 /* Answer buttons */
-.answer-btn {
-  background: #fbf7f1;
-  border: 1px solid #e3d8c8;
-  color: #3f3a34;
-  border-radius: 16px;
+.option-btn {
+    background: #fbf7f1;
+    border: 2px solid #e3d8c8;
+    color: #3f3a34;
+    border-radius: 16px;
 }
 
-.answer-btn:hover {
-  background: #f1e7d8;
-  border-color: #c9b08a;
+.option-btn:hover:not(:disabled) {
+    background: #f1e7d8;
+    border-color: #c9b08a;
 }
 
-/* Selected (optional if you already use this class) */
-.answer-btn.selected {
-  background: #e7d3b3;
-  border-color: #b0895b;
+/* Correct / Wrong stay same logic but softer tone */
+.option-btn.correct {
+    background-color: #7fb77e;
+    border-color: #7fb77e;
 }
 
-/* Primary buttons (Start, Next, Try Again) */
-.primary-btn,
-button {
-  background: #b0895b;
-  color: #fffaf2;
-  border-radius: 16px;
+.option-btn.wrong {
+    background-color: #e07a5f;
+    border-color: #e07a5f;
 }
 
-.primary-btn:hover,
-button:hover {
-  background: #9c7447;
+/* Primary buttons */
+.primary-btn {
+    background: #b0895b;
+    color: #fffaf2;
+    border-radius: 16px;
 }
 
-/* Score box */
-.score-box {
-  color: #6a4e2f;
-  font-weight: 700;
+.primary-btn:hover {
+    background: #9c7447;
 }
 
 /* Level card */
 .level-card {
-  background: #f4ede3;
-  border-radius: 16px;
+    background: #f4ede3;
+    border-radius: 16px;
 }
 
-/* Share buttons spacing */
-.share-box button {
-  margin-top: 10px;
-}
-/* Hanbok characters background decoration */
+/* Hanbok characters (decorative background) */
 body::before {
-  content: "";
-  position: fixed;
-  bottom: 30px;
-  right: 40px;
-  width: 320px;
-  height: 320px;
+    content: "";
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 300px;
+    height: 300px;
 
-  background-image: url("hanbok-characters.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+    background-image: url("./assets/hanbok-characters.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 
-  opacity: 0.15;          /* soft & modern */
-  pointer-events: none;  /* clickable UI stays usable */
-  z-index: -1;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: -1;
 }
+
