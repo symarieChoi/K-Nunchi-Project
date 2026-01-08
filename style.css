@@ -425,39 +425,73 @@ body::before {
     animation: float 2.6s ease-in-out infinite;
 }
 /* =========================
-   Start Page Side Gates
+   START PAGE – HANOK DOORS
 ========================= */
 
-.start-layout {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
+/* =========================
+   START PAGE ONLY
+========================= */
+
+.start-page .start-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-/* Center area */
-.start-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Doors */
+/* ===== Start Page Doors ===== */
+.start-page .door {
+  position: fixed;
+  top: 50%;
+  width: 400px;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Gate base */
-.gate {
-    width: 120px;
-    height: 220px;
-    background-image: url("./hanok_doors.png"); /* change name if needed */
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.85;
+/* Left door */
+.start-page .door-left {
+  left: calc(50% - 490px);
 }
 
-/* Left & right flip */
-.gate-left {
-    transform: scaleX(-1);
+/* Right door */
+.start-page .door-right {
+  right: calc(50% - 490px);
+  transform: translateY(-50%) scaleX(-1);
 }
 
-.gate-right {
-    transform: scaleX(1);
+/* Floating animation (VISIBLE) */
+@keyframes doorFloat {
+  0%   { transform: translateY(-50%) translateY(0); }
+  50%  { transform: translateY(-50%) translateY(-18px); }
+  100% { transform: translateY(-50%) translateY(0); }
 }
+/* ===== Door Open Animation ===== */
+.start-page .door.open-left {
+  animation: openLeft 1s ease forwards;
+}
+
+.start-page .door.open-right {
+  animation: openRight 1s ease forwards;
+}
+
+@keyframes openLeft {
+  to {
+    transform: translate(-180%, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes openRight {
+  to {
+    transform: translate(180%, -50%) scaleX(-1);
+    opacity: 0;
+  }
+}
+
+

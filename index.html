@@ -10,15 +10,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
 
 </head>
+    
+<script src="start.js"></script>
 
 <body class="start-page">
+
+    <!-- Doors -->
+    <img src="./hanok-door.png" class="door door-left" alt="Left door">
+    <img src="./hanok-door.png" class="door door-right" alt="Right door">
+
     <div class="app-container">
         <div class="screen active">
             <h1>K-Nunchi Survival</h1>
-            <p style="text-align: center;">Test your knowledge of Korean etiquette and "Nunchi"!</p>            <div class="start-characters"></div>
-            <a href="quiz.html" class="btn primary-btn">Start Quiz</a>
+            <p style="text-align:center;">
+                Test your knowledge of Korean etiquette and "Nunchi"!
+            </p>
+
+            <div class="start-characters"></div>
+
+            <!-- BUTTON (NOT LINK) -->
+            <button id="startBtn" class="btn primary-btn">
+                Start Quiz 
+            </button>
         </div>
     </div>
+
+    <!-- JS MUST BE HERE -->
+    <script src="start.js"></script>
 </body>
+
+
 
 </html>
