@@ -33,6 +33,11 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+
+   background-image: url('images/hanok_doors.png'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90% auto; /* Adjust this to make the doors wider/smaller */
 }
 
 .app-container {
