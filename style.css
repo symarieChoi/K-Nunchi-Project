@@ -444,24 +444,24 @@ body::before {
 }
 
 /* Doors */
+/* ===== Start Page Doors ===== */
 .start-page .door {
-  position: absolute;
+  position: fixed;
   top: 50%;
-  width: 220px;
-  opacity: 0.95;
+  width: 160px;
+  transform: translateY(-50%);
   z-index: 1;
-  animation: doorFloat 4s ease-in-out infinite;
+  pointer-events: none;
 }
 
 /* Left door */
 .start-page .door-left {
-  left: calc(50% - 340px);
-  transform: translateY(-50%);
+  left: calc(50% - 360px);
 }
 
-/* Right door (mirrored) */
+/* Right door */
 .start-page .door-right {
-  left: calc(50% + 160px);
+  right: calc(50% - 360px);
   transform: translateY(-50%) scaleX(-1);
 }
 
@@ -471,32 +471,27 @@ body::before {
   50%  { transform: translateY(-50%) translateY(-18px); }
   100% { transform: translateY(-50%) translateY(0); }
 }
-/* Door opening animation */
+/* ===== Door Open Animation ===== */
 .start-page .door.open-left {
-  animation: slideLeft 1s ease forwards;
+  animation: openLeft 1s ease forwards;
 }
 
 .start-page .door.open-right {
-  animation: slideRight 1s ease forwards;
+  animation: openRight 1s ease forwards;
 }
 
-@keyframes slideLeft {
-  from {
-    transform: translateY(-50%);
-  }
+@keyframes openLeft {
   to {
-    transform: translate(-120%, -50%);
+    transform: translate(-180%, -50%);
     opacity: 0;
   }
 }
 
-@keyframes slideRight {
-  from {
-    transform: translateY(-50%) scaleX(-1);
-  }
+@keyframes openRight {
   to {
-    transform: translate(120%, -50%) scaleX(-1);
+    transform: translate(180%, -50%) scaleX(-1);
     opacity: 0;
   }
 }
+
 
