@@ -3,14 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const leftDoor = document.querySelector(".door-left");
   const rightDoor = document.querySelector(".door-right");
 
+  if (!startBtn || !leftDoor || !rightDoor) {
+    console.error("Start page elements not found");
+    return;
+  }
+
   startBtn.addEventListener("click", () => {
-    // Add animation classes
     leftDoor.classList.add("open-left");
     rightDoor.classList.add("open-right");
 
-    // Go to quiz page after animation
     setTimeout(() => {
       window.location.href = "quiz.html";
-    }, 1000); // must match animation duration
+    }, 1000);
   });
 });
