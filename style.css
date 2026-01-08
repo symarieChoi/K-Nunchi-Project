@@ -377,6 +377,7 @@ h1, h2, h3 {
 }
 
 /* Decorative hanbok image */
+/* Characters on ALL pages */
 body::before {
     content: "";
     position: fixed;
@@ -387,10 +388,15 @@ body::before {
     background-image: url("./hanbok-characters.png");
     background-repeat: no-repeat;
     background-size: contain;
-    opacity: 0.45;
+    opacity: 0.18;
     pointer-events: none;
-    z-index: -1;
 }
+
+/* ❌ Remove characters ONLY on start page */
+.start-page::before {
+    display: none;
+}
+
 
 /* =========================
    Start Page Characters
