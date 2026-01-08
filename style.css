@@ -410,9 +410,9 @@ body::before {
     opacity: 0.9;
 }
 @keyframes float {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-18px) rotate(1.5deg); }
-    100% { transform: translateY(0) rotate (0deg); }
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+    100% { transform: translateY(0); }
 }
 
 .start-characters {
