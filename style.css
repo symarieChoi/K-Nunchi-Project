@@ -448,7 +448,7 @@ body::before {
 .start-page .door {
   position: fixed;
   top: 50%;
-  width: 220px;
+  width: 400px;
   transform: translateY(-50%);
   z-index: 1;
   pointer-events: none;
