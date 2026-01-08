@@ -8,19 +8,16 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
-
 </head>
-    
-<script src="start.js"></script>
 
 <body class="start-page">
 
-    <!-- Doors -->
     <img src="./hanok-door.png" class="door door-left" alt="Left door">
     <img src="./hanok-door.png" class="door door-right" alt="Right door">
 
     <div class="app-container">
-        <div class="screen active">
+
+        <div id="main-screen" class="screen active">
             <h1>K-Nunchi Survival</h1>
             <p style="text-align:center;">
                 Test your knowledge of Korean etiquette and "Nunchi"!
@@ -28,17 +25,45 @@
 
             <div class="start-characters"></div>
 
-            <!-- BUTTON (NOT LINK) -->
-            <button id="startBtn" class="btn primary-btn">
-                Start Quiz 
+            <button id="showIntroBtn" class="btn primary-btn">
+                Start Quiz
             </button>
         </div>
+
+        <div id="intro-screen" class="screen">
+            <h2 class="type-text">Before we start...</h2>
+            
+            <div class="intro-content">
+                <p class="type-text">
+                    You will be given several situations that you may encounter in Korea. 
+                    After reading each situation, please choose the answer that reflects what Koreans usually do.
+                </p>
+                
+                <p class="type-text">
+                    Your <strong>K-Nunchi*</strong> level will be determined based on the number of correct answers.
+                </p>
+
+                <div class="note-box">
+                    <p>
+                        Please note that these answers may not always be the only solution. 
+                        However, they represent the <strong>unspoken rules</strong> generally followed in most Korean situations.
+                    </p>
+                </div>
+
+                <div class="definition-box">
+                    <span class="def-title">*Nunchi (눈치):</span>
+                    the subtle art of 'reading the room'; the ability to gauge the atmosphere and understand others' unspoken feelings.
+                </div>
+            </div>
+
+            <button id="realStartBtn" class="btn primary-btn">
+                I'm Ready!
+            </button>
+        </div>
+
     </div>
 
-    <!-- JS MUST BE HERE -->
     <script src="start.js"></script>
 </body>
-
-
 
 </html>

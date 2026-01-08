@@ -494,4 +494,60 @@ body::before {
   }
 }
 
+/* =========================
+   SCREEN TRANSITION
+========================= */
+/* 기본적으로 screen은 숨김 처리 */
+.screen {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
 
+/* active 클래스가 있을 때만 보임 */
+.screen.active {
+    display: block;
+}
+
+/* =========================
+   INTRO PAGE STYLES
+========================= */
+.intro-content {
+    text-align: left;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 25px;
+}
+
+.intro-content p {
+    margin-bottom: 15px;
+}
+
+/* 중요 메모 박스 */
+.note-box {
+    background-color: #fff7ef;
+    border-left: 4px solid var(--primary-color);
+    padding: 12px 15px;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    color: #555;
+    border-radius: 4px;
+}
+
+/* 눈치 정의 박스 */
+.definition-box {
+    background-color: #f1f3f5;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: #495057;
+    border: 1px dashed #ced4da;
+}
+
+.def-title {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 4px;
+}
