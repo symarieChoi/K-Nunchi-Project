@@ -5,7 +5,7 @@ const isResultPage = document.getElementById('result-page');
 
 let currentQuestion = null;
 
-/* ========= SHUFFLE FUNCTION ========= */
+// shuffle function
 function shuffleOptions(options, correctIndex) {
     const arr = options.map((text, i) => ({
         text,
@@ -23,7 +23,7 @@ function shuffleOptions(options, correctIndex) {
     };
 }
 
-/* ========= PART 1. QUIZ PAGE LOGIC ========= */
+// quiz page logic
 if (isQuizPage) {
     let currentQuestionIndex = 0;
     let score = 0;
@@ -101,7 +101,7 @@ if (isQuizPage) {
     };
 }
 
-/* ========= PART 2. RESULT PAGE LOGIC ========= */
+// result page logic
 if (isResultPage) {
     // 1. 점수 불러오기
     const savedScore = localStorage.getItem('quizScore');
@@ -110,7 +110,7 @@ if (isResultPage) {
     // 점수 화면 표시
     document.getElementById('final-score').innerText = finalScore;
 
-    // 2. 레벨 계산 (data.js의 기준 사용)
+    // 2. 레벨 계산
     let finalLevel = resultLevels[0];
     for (let level of resultLevels) {
         if (finalScore >= level.minScore) {
@@ -131,7 +131,7 @@ if (isResultPage) {
         };
     }
 
-    // 4. Copy Link (공유) 버튼 기능
+    // 4. Copy Link 버튼 기능
     const webShareBtn = document.getElementById('web-share-btn');
     if (webShareBtn) {
         webShareBtn.onclick = async () => {
@@ -161,7 +161,7 @@ if (isResultPage) {
     if (kakaoBtn) {
         if (window.Kakao && !Kakao.isInitialized()) {
             try {
-                Kakao.init('c5ced87e2904c7f993809b80c926c5c3'); // 본인 키 확인
+                Kakao.init('c5ced87e2904c7f993809b80c926c5c3');
             } catch (e) { console.log('Kakao SDK error'); }
         }
 
@@ -178,7 +178,7 @@ if (isResultPage) {
                     description: `I scored ${finalScore}/10 (${finalLevel.title}). Can you beat my score?`,
                     imageUrl: 'https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=800&auto=format&fit=crop', // 원하는 이미지 주소
                     link: {
-                        mobileWebUrl: shareUrl, // 수정된 주소 사용
+                        mobileWebUrl: shareUrl,
                         webUrl: shareUrl,
                     },
                 },
@@ -186,7 +186,7 @@ if (isResultPage) {
                     {
                         title: '나도 풀어보기',
                         link: {
-                            mobileWebUrl: shareUrl, // 수정된 주소 사용
+                            mobileWebUrl: shareUrl,
                             webUrl: shareUrl,
                         },
                     },
