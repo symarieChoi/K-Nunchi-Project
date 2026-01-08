@@ -456,12 +456,12 @@ body::before {
 
 /* Left door */
 .start-page .door-left {
-  left: calc(50% - 360px);
+  left: calc(50% - 400px);
 }
 
 /* Right door */
 .start-page .door-right {
-  right: calc(50% - 360px);
+  right: calc(50% - 400px);
   transform: translateY(-50%) scaleX(-1);
 }
 
