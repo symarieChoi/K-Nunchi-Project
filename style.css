@@ -425,39 +425,47 @@ body::before {
     animation: float 2.6s ease-in-out infinite;
 }
 /* =========================
-   Start Page Side Gates
+   START PAGE – HANOK DOORS
 ========================= */
 
-.start-layout {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
+.start-page .door {
+    position: fixed;
+    top: 50%;
+    width: 220px;
+    transform: translateY(-50%);
+    opacity: 0.95;
+    z-index: 5; /* above background, below card */
+    pointer-events: none;
 }
 
-/* Center area */
-.start-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Left door */
+.start-page .door-left {
+    left: 0;
+    animation: doorFloatLeft 4s ease-in-out infinite;
 }
 
-/* Gate base */
-.gate {
-    width: 120px;
-    height: 220px;
-    background-image: url("./hanok_doors.png"); /* change name if needed */
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.85;
+/* Right door */
+.start-page .door-right {
+    right: 0;
+    transform: translateY(-50%) scaleX(-1); /* mirror */
+    animation: doorFloatRight 4s ease-in-out infinite;
 }
 
-/* Left & right flip */
-.gate-left {
-    transform: scaleX(-1);
+/* Floating animation (VISIBLE) */
+@keyframes doorFloatLeft {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0);
+    }
+    50% {
+        transform: translateY(-50%) translateX(-12px);
+    }
 }
 
-.gate-right {
-    transform: scaleX(1);
+@keyframes doorFloatRight {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0) scaleX(-1);
+    }
+    50% {
+        transform: translateY(-50%) translateX(12px) scaleX(-1);
+    }
 }
