@@ -448,7 +448,7 @@ body::before {
 .start-page .door {
   position: fixed;
   top: 50%;
-  width: 160px;
+  width: 180px;
   transform: translateY(-50%);
   z-index: 1;
   pointer-events: none;
@@ -456,12 +456,12 @@ body::before {
 
 /* Left door */
 .start-page .door-left {
-  left: calc(50% - 360px);
+  left: calc(50% - 420px);
 }
 
 /* Right door */
 .start-page .door-right {
-  right: calc(50% - 360px);
+  right: calc(50% - 420px);
   transform: translateY(-50%) scaleX(-1);
 }
 
