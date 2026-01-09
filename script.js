@@ -28,7 +28,8 @@ if (isQuizPage) {
     let currentQuestionIndex = 0;
     let score = 0;
 
-    const scenarioText = document.getElementById('scenario-text');
+    const situationText = document.getElementById('situation-text');
+    const questionText = document.getElementById('question-text');
     const scenarioImg = document.getElementById('scenario-img');
     const optionsContainer = document.getElementById('options-container');
     const progressText = document.getElementById('progress-text');
@@ -51,13 +52,26 @@ if (isQuizPage) {
             options: shuffled.options,
             correctIndex: shuffled.correctIndex
         };
-
+        // 화면 초기화
         feedbackArea.classList.add('hidden');
         optionsContainer.innerHTML = '';
         nextBtn.disabled = false; // 버튼 활성화
 
+        // 텍스트 & 이미지 설정
         categoryBadge.innerText = currentQuestion.category;
 
+        // 시나리오 상황/질문으로 쪼개기
+        const parts = currentQuestion.scenario.split('\n\n');
+        if (parts.length > 1) {
+            situationText.innerText = parts[0]; // 앞부분
+            questionText.innerText = parts[1];  // 뒷부분
+        } else {
+            // 만약 줄바꿈이 없는 데이터라면 그냥 위에 다 넣음
+            situationText.innerText = currentQuestion.scenario;
+            questionText.innerText = "";
+        }
+
+        // 이미지 처리
         if (currentQuestion.img) {
             scenarioImg.src = currentQuestion.img;
             scenarioImg.style.display = 'block'; // 이미지가 있으면 보여주기
@@ -65,7 +79,7 @@ if (isQuizPage) {
             scenarioImg.style.display = 'none'; // 이미지가 없으면 숨기기 (에러 방지)
         }
 
-        scenarioText.innerText = currentQuestion.scenario;
+        // 진행도 표시
         progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
         progressFill.style.width = `${(currentQuestionIndex / quizData.length) * 100}%`;
 

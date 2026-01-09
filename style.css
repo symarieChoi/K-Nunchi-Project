@@ -141,19 +141,20 @@ h2 {
 ========================= */
 .scenario-box {
     margin-bottom: 25px;
+    text-align: left;
 }
 
 #scenario-text::before {
     content: "💬 ";
 }
 
-#scenario-text {
+.situation-text {
     font-size: 1.1rem;
-    line-height: 1.7;
+    line-height: 1.6;
     color: var(--text-color);
-    white-space: pre-line;
+    margin-bottom: 15px;
+    /* 이미지와의 간격 */
 }
-
 .q-image {
     width: 100%;
     /* 가로폭 꽉 채우기 */
@@ -167,6 +168,17 @@ h2 {
     /* 글자와 간격 띄우기 */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     /* 살짝 그림자 */
+}
+
+.question-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    /* 굵게 */
+    color: var(--primary-color);
+    /* 포인트 컬러 */
+    text-align: center;
+    /* 질문은 가운데 정렬 추천 */
+    line-height: 1.4;
 }
 
 /* =========================
