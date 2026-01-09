@@ -196,26 +196,27 @@ if (isResultPage) {
     }
 }
 // ===== RESULT PAGE LOGIC =====
-const scoreElement = document.getElementById("final-score");
+const score = Number(localStorage.getItem("quizScore")) || 0;
 
-if (scoreElement) {
-  const score = Number(localStorage.getItem("quizScore")) || 0;
-  scoreElement.textContent = score;
+const characterImg = document.getElementById("result-character");
+const title = document.getElementById("result-title");
+const message = document.getElementById("result-message");
 
-  const levelTitle = document.getElementById("level-title");
-  const levelDesc = document.getElementById("level-desc");
-
-  if (score >= 9) {
-    levelTitle.textContent = "Almost Korean 🇰🇷✨";
-    levelDesc.textContent = "You read the room like a local!";
-  } else if (score >= 7) {
-    levelTitle.textContent = "K-life Pro 💼";
-    levelDesc.textContent = "You know your way around Korean culture!";
-  } else if (score >= 4) {
-    levelTitle.textContent = "Loading Nunchi... 👀";
-    levelDesc.textContent = "You're learning — keep observing!";
-  } else {
-    levelTitle.textContent = "Tourist 🎒";
-    levelDesc.textContent = "Welcome to Korea! Time to learn Nunchi!";
-  }
+if (score >= 9) {
+    characterImg.src = "hanbok-master.png";
+    title.textContent = "🇰🇷 Almost Korean";
+    message.textContent = "Your nunchi is on another level.";
+} else if (score >= 7) {
+    characterImg.src = "k-life-pro.png";
+    title.textContent = "🥢 K-Life Pro";
+    message.textContent = "You survive Korea like a local.";
+} else if (score >= 4) {
+    characterImg.src = "nunchi-student.png";
+    title.textContent = "😅 Learning Nunchi";
+    message.textContent = "Still learning… but getting there!";
+} else {
+    characterImg.src = "tourist.png";
+    title.textContent = "🧳 Tourist";
+    message.textContent = "Don’t worry, everyone starts here.";
 }
+
