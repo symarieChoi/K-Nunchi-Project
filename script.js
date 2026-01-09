@@ -122,6 +122,10 @@ if (isResultPage) {
     document.getElementById('level-title').innerText = finalLevel.title;
     document.getElementById('level-desc').innerText = finalLevel.description;
 
+    // 레벨 이미지 표시
+    const levelImage = document.getElementById('level-image');
+    if (levelImage) levelImage.src = finalLevel.image;
+
     // 3. Try Again 버튼 기능
     const restartBtn = document.getElementById('restart-btn');
     if (restartBtn) {
@@ -194,28 +198,4 @@ if (isResultPage) {
             });
         };
     }
-}
-// ===== RESULT PAGE LOGIC =====
-const scoreElement = document.getElementById("final-score");
-
-if (scoreElement) {
-  const score = Number(localStorage.getItem("quizScore")) || 0;
-  scoreElement.textContent = score;
-
-  const levelTitle = document.getElementById("level-title");
-  const levelDesc = document.getElementById("level-desc");
-
-  if (score >= 9) {
-    levelTitle.textContent = "Almost Korean 🇰🇷✨";
-    levelDesc.textContent = "You read the room like a local!";
-  } else if (score >= 7) {
-    levelTitle.textContent = "K-life Pro 💼";
-    levelDesc.textContent = "You know your way around Korean culture!";
-  } else if (score >= 4) {
-    levelTitle.textContent = "Loading Nunchi... 👀";
-    levelDesc.textContent = "You're learning — keep observing!";
-  } else {
-    levelTitle.textContent = "Tourist 🎒";
-    levelDesc.textContent = "Welcome to Korea! Time to learn Nunchi!";
-  }
 }

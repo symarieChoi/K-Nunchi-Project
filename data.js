@@ -131,7 +131,7 @@ export const quizData = [
         correctIndex: 2,
         explanation: "In Korea, the 'Two Hands Rule' is crucial. Receiving something with two hands is a sign of respect towards the other person."
     },
-    // 👇 새로 추가된 시나리오 11, 12, 13
+
     {
         id: 11,
         category: "Drinking Culture",
@@ -142,7 +142,7 @@ export const quizData = [
             "Cover the bottle's label (logo) with your hand while pouring.",
             "Fill the glass only halfway to leave room for air."
         ],
-        correctIndex: 2, // Answer: 3
+        correctIndex: 2,
         explanation: "In formal drinking culture, it is considered very polite to cover the brand label with your hand while pouring. This signifies humility and prevents the guest from judging the 'price' or 'brand' of the alcohol being served."
     },
     {
@@ -155,7 +155,7 @@ export const quizData = [
             "Say, 'Then I'll get the coffee!' and take them to a cafe.",
             "Calculate exactly 50% of the bill and bank transfer it to them immediately."
         ],
-        correctIndex: 2, // Answer: 3
+        correctIndex: 2,
         explanation: "Koreans often take turns paying. If someone buys '1-cha' (the meal), it is an unspoken rule that the other person buys '2-cha' (coffee or dessert). This is seen as much warmer and friendlier than a cold Dutch pay transaction."
     },
     {
@@ -168,7 +168,7 @@ export const quizData = [
             "Ask them, 'Do you have a cold?'",
             "Pretend nothing happened and stay quiet."
         ],
-        correctIndex: 3, // Answer: 4
+        correctIndex: 3,
         explanation: "Unlike in Western cultures where 'Bless you' is automatic, Korea has no standard response to a sneeze. In fact, drawing attention to someone's bodily function (even to be nice) can make them feel embarrassed. The polite thing to do is to ignore it completely!"
     }
 ];
@@ -177,28 +177,28 @@ export const resultLevels = [
     {
         level: 1,
         minScore: 0,
-        title: "Tourist",
-        description: "Welcome to Korea! You are just starting your journey. Keep observing!",
+        title: "Tourist 🎒",
+        description: "Welcome to Korea! Time to learn Nunchi!",
         image: "level_1.png"
     },
     {
         level: 2,
-        minScore: 5,
-        title: "Loading Nunchi...",
-        description: "You're getting there! You know the basics but need a bit more 'Nunchi'.",
+        minScore: 3,
+        title: "Loading Nunchi... 👀",
+        description: "You're learning — keep observing!",
         image: "level_2.png"
     },
     {
         level: 3,
-        minScore: 9,
-        title: "K-life Pro",
-        description: "Impressive! You can handle most daily situations in Korea like a pro.",
+        minScore: 6,
+        title: "K-life Pro 💼",
+        description: "You read the room like a local!",
         image: "level_3.png"
     },
     {
         level: 4,
-        minScore: 12,
-        title: "Almost Korean",
+        minScore: 11,
+        title: "Almost Korean 🇰🇷✨",
         description: "Perfect! Your Nunchi is level 100. Are you sure you aren't Korean?",
         image: "level_4.png"
     }
