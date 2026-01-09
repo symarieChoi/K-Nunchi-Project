@@ -1,66 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Result - K-Nunchi</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
+    <!-- Kakao SDK -->
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"></script>
 </head>
 
 <body>
-    <div class="app-container">
-        <div id="result-page" class="screen active">
-            <h2>Quiz Completed!</h2>
-            <div class="score-box">
-                Your Score: <span id="final-score">0</span> / 10
-            </div>
+<div class="app-container">
+    <div id="result-page" class="screen active">
 
-            <div class="level-card">
-                <h3 id="level-title">Loading...</h3>
-                <p id="level-desc">Analyzing your Nunchi...</p>
-            </div>
+        <h2>Quiz Completed 🎉</h2>
 
-            <div class="level-guide-box">
-                <h4>🏆 Level Guide</h4>
-                <ul>
-                    <li>
-                        <span class="guide-level">Almost Korean</span>
-                        <span class="guide-score">9-10 pts</span>
-                    </li>
-                    <li>
-                        <span class="guide-level">K-life Pro</span>
-                        <span class="guide-score">7-8 pts</span>
-                    </li>
-                    <li>
-                        <span class="guide-level">Loading Nunchi...</span>
-                        <span class="guide-score">4-6 pts</span>
-                    </li>
-                    <li>
-                        <span class="guide-level">Tourist</span>
-                        <span class="guide-score">0-3 pts</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="share-box" style="margin-bottom: 20px; text-align: center;">
-                <p style="margin-bottom: 10px; color: #666;">Share your result:</p>
-                <button id="kakao-share-btn" class="btn"
-                    style="background-color: #FEE500; color: #3c1e1e; margin-bottom: 10px;">
-                    💬 Share via KakaoTalk
-                </button>
-                <button id="web-share-btn" class="btn" style="background-color: #e9ecef; color: #333;">
-                    🔗 Share Link / Copy
-                </button>
-            </div>
-
-            <button id="restart-btn" class="btn primary-btn">Try Again</button>
+        <div class="score-box">
+            Your Score: <span id="final-score">0</span> / 10
         </div>
+
+        <div class="level-card">
+            <h3 id="level-title">Loading...</h3>
+            <p id="level-desc">Analyzing your Nunchi...</p>
+        </div>
+
+        <div class="level-guide-box">
+            <h4>🏆 Level Guide</h4>
+            <ul>
+                <li><span class="guide-level">Almost Korean</span> <span>9–10</span></li>
+                <li><span class="guide-level">K-life Pro</span> <span>7–8</span></li>
+                <li><span class="guide-level">Loading Nunchi…</span> <span>4–6</span></li>
+                <li><span class="guide-level">Tourist</span> <span>0–3</span></li>
+            </ul>
+        </div>
+
+        <!-- SHARE -->
+        <div class="share-box">
+            <p>Share your result:</p>
+
+            <button id="kakao-share-btn" class="btn kakao">
+                💬 Share via KakaoTalk
+            </button>
+
+            <button id="web-share-btn" class="btn">
+                🔗 Share / Copy Link
+            </button>
+        </div>
+
+        <button id="restart-btn" class="btn primary-btn">
+            Try Again
+        </button>
     </div>
+</div>
 
-    <script type="module" src="script.js?v=3"></script>
+<script>
+/* ---------------- SCORE SAFE LOAD ---------------- */
+let score = Number(localStorage.getItem("quizScore"));
+if (isNaN(score) || score < 0) score = 0;
+if (score > 10) score = 10;
+
+document.getElementById("final-score").textContent = score;
+
+/* ---------------- LEVEL LOGIC ---------------- */
+let title = "";
+let desc = "";
+
+if (score >= 9) {
+    title = "🇰🇷 Almost Korean";
+    desc = "You read the room better than locals. Hanbok energy.";
+} else if (score >= 7) {
+    title = "🔥 K-life Pro";
+    desc = "You know the vibes. You survive Korean society.";
+} else if (score >= 4) {
+    title = "⏳ Loading Nunchi…";
+    desc = "You’re learning. Give it time!";
+} else {
+    title = "🎒 Tourist";
+    desc = "Lost but cute. Welcome to Korea.";
+}
+
+document.getElementById("level-title").textContent = title;
+document.getElementById("level-desc").textContent = desc;
+
+/* ---------------- KAKAO SHARE ---------------- */
+Kakao.init("YOUR_KAKAO_JAVASCRIPT_KEY");
+
+document.getElementById("kakao-share-btn").addEventListener("click", () => {
+    Kakao.Share.sendDefault({
+        objectType: "feed",
+        content: {
+            title: "My K-Nunchi Result",
+            description: `${title} — ${score}/10`,
+            imageUrl: "https://your-site.com/thumbnail.png",
+            link: {
+                mobileWebUrl: window.location.origin,
+                webUrl: window.location.origin,
+            },
+        },
+    });
+});
+
+/* ---------------- WEB SHARE + COPY ---------------- */
+document.getElementById("web-share-btn").addEventListener("click", async () => {
+    const shareData = {
+        title: "K-Nunchi Result",
+        text: `I got ${score}/10 — ${title}`,
+        url: window.location.href,
+    };
+
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (err) {
+            console.log("Share cancelled");
+        }
+    } else {
+        await navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+    }
+});
+
+/* ---------------- RESTART ---------------- */
+document.getElementById("restart-btn").addEventListener("click", () => {
+    localStorage.removeItem("quizScore");
+    window.location.href = "index.html";
+});
+</script>
+
 </body>
-
 </html>
