@@ -130,34 +130,74 @@ export const quizData = [
         ],
         correctIndex: 2,
         explanation: "In Korea, the 'Two Hands Rule' is crucial. Receiving something with two hands is a sign of respect towards the other person."
+    },
+    // 👇 새로 추가된 시나리오 11, 12, 13
+    {
+        id: 11,
+        category: "Drinking Culture",
+        scenario: "You are drinking with a senior mentor you respect very much. You want to pour them a glass of Soju to show your gratitude. You pick up the bottle with two hands.\n\nWhat is the most sophisticated and polite detail to add while pouring?",
+        options: [
+            "Shake the bottle vigorously to mix it.",
+            "Pour it with only your right hand to look cool.",
+            "Cover the bottle's label (logo) with your hand while pouring.",
+            "Fill the glass only halfway to leave room for air."
+        ],
+        correctIndex: 2, // Answer: 3
+        explanation: "In formal drinking culture, it is considered very polite to cover the brand label with your hand while pouring. This signifies humility and prevents the guest from judging the 'price' or 'brand' of the alcohol being served."
+    },
+    {
+        id: 12,
+        category: "Social Etiquette",
+        scenario: "You just had a great lunch with a Korean friend. You tried to pay, but your friend insisted and paid for the whole meal. They refuse to take your cash when you try to pay them back.\n\nWhat is the best way to return the favor?",
+        options: [
+            "Say 'Thank you' and just go home.",
+            "Force the cash into their pocket or bag.",
+            "Say, 'Then I'll get the coffee!' and take them to a cafe.",
+            "Calculate exactly 50% of the bill and bank transfer it to them immediately."
+        ],
+        correctIndex: 2, // Answer: 3
+        explanation: "Koreans often take turns paying. If someone buys '1-cha' (the meal), it is an unspoken rule that the other person buys '2-cha' (coffee or dessert). This is seen as much warmer and friendlier than a cold Dutch pay transaction."
+    },
+    {
+        id: 13,
+        category: "Public Etiquette",
+        scenario: "You are in a quiet library or an elevator. The Korean person standing next to you suddenly sneezes loudly. 'Achoo!!'\n\nWhat is the proper reaction in Korea?",
+        options: [
+            "Say 'Bless you!' with a smile.",
+            "Say 'Gesundheit!'",
+            "Ask them, 'Do you have a cold?'",
+            "Pretend nothing happened and stay quiet."
+        ],
+        correctIndex: 3, // Answer: 4
+        explanation: "Unlike in Western cultures where 'Bless you' is automatic, Korea has no standard response to a sneeze. In fact, drawing attention to someone's bodily function (even to be nice) can make them feel embarrassed. The polite thing to do is to ignore it completely!"
     }
 ];
 
 export const resultLevels = [
     {
         level: 1,
-        minScore: 0, // 0 ~ 3점
+        minScore: 0,
         title: "Tourist",
         description: "Welcome to Korea! You are just starting your journey. Keep observing!",
         image: "level_1.png"
     },
     {
         level: 2,
-        minScore: 4, // 4 ~ 6점
+        minScore: 5,
         title: "Loading Nunchi...",
         description: "You're getting there! You know the basics but need a bit more 'Nunchi'.",
         image: "level_2.png"
     },
     {
         level: 3,
-        minScore: 7, // 7 ~ 8점
+        minScore: 9,
         title: "K-life Pro",
         description: "Impressive! You can handle most daily situations in Korea like a pro.",
         image: "level_3.png"
     },
     {
         level: 4,
-        minScore: 9, // 9 ~ 10점
+        minScore: 12,
         title: "Almost Korean",
         description: "Perfect! Your Nunchi is level 100. Are you sure you aren't Korean?",
         image: "level_4.png"
