@@ -245,6 +245,15 @@ a.btn {
     margin-top: 15px;
 }
 
+/* Level card */
+.level-card {
+    background: #f4ede3;
+    border-radius: 16px;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
 /* =========================
    LEVEL GUIDE
 ========================= */
@@ -253,7 +262,7 @@ a.btn {
     border: 1px solid #e9ecef;
     border-radius: 12px;
     padding: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     text-align: left;
     font-size: 0.9rem;
 }
@@ -382,14 +391,6 @@ h3 {
 /* Emoji inside buttons */
 .primary-btn::after {
     content: " ✨";
-}
-
-/* Level card */
-.level-card {
-    background: #f4ede3;
-    border-radius: 16px;
-    text-align: center;
-    padding: 20px;
 }
 
 /* Decorative hanbok image */
