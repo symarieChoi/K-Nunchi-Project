@@ -2,20 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Result - K-Nunchi</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
+    <!-- Kakao SDK -->
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"></script>
 </head>
 
 <body>
     <div class="app-container">
         <div id="result-page" class="screen active">
-            <h2>Quiz Completed!</h2>
+            <h2>Quiz Completed 🎉</h2>
+
             <div class="score-box">
-                Your Score: <span id="final-score">0</span> / 13
+                Your Score: <span id="final-score">0</span> / 10
             </div>
 
             <div class="level-card">
@@ -59,8 +61,7 @@
             <button id="restart-btn" class="btn primary-btn">Try Again</button>
         </div>
     </div>
-
-    <script type="module" src="script.js?v=3"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>

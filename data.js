@@ -43,7 +43,7 @@ export const quizData = [
     {
         id: 4,
         category: "Transportation",
-        scenario: "You are riding a city bus in Seoul. It is getting crowded, but you spot a bright Yellow seat near the front. Later, you transfer to the subway and see an empty Pink seat. You are young and healthy, but your legs are a bit tired.\n\nCan you sit in these seats?",
+        scenario: "You are riding a bus. It is getting crowded, but you spot a bright Yellow seat near the front. Later, you transfer to the subway and see an empty Pink seat. You are young and healthy, but your legs are a bit tired.\n\nCan you sit in these seats?",
         options: [
             "Yes, if they are empty, anyone can sit there.",
             "You can sit, but you must pretend to be asleep.",
@@ -56,10 +56,10 @@ export const quizData = [
     {
         id: 5,
         category: "House Etiquette",
-        scenario: "You are invited to dinner at your Korean friend 'Min-su's' house. As soon as you open the front door, you see the living room. The floor looks very clean.\n\nWhat is the most appropriate action with your sneakers?",
+        scenario: "You are invited to dinner at your Korean friend's house. As soon as you open the front door, you see the living room. The floor looks very clean.\n\nWhat is the most appropriate action with your sneakers?",
         options: [
             "Walk naturally to the living room sofa while wearing your sneakers.",
-            "Take off your sneakers at the entrance (genkan) and enter barefoot or in socks.",
+            "Take off your sneakers at the entrance and enter barefoot or in socks.",
             "Take off your sneakers, hold them in your hands, and place them on the dining table.",
             "Ask your friend, 'Can I keep my shoes on?'"
         ],
@@ -82,7 +82,7 @@ export const quizData = [
     {
         id: 7,
         category: "Transportation",
-        scenario: "You are traveling in Seoul on the subway. Your legs hurt and you want to sit down. You notice one empty seat at the end of the car that is pink. There are many people standing nearby, but no one is sitting there.\n\nWhat should you do?",
+        scenario: "You are on the subway. Your legs hurt and you want to sit down. You notice one empty seat at the end of the car that is pink. There are many people standing nearby, but no one is sitting there.\n\nWhat should you do?",
         options: [
             "Lucky! Run over and sit down immediately.",
             "Leave it empty unless you are pregnant.",
@@ -111,7 +111,7 @@ export const quizData = [
         scenario: "You finished a takeaway Iced Americano on the street. Inside the plastic cup, there is still some ice and a little bit of coffee left. You found a trash bin!\n\nWhat is the perfect way to dispose of this cup?",
         options: [
             "Throw the whole cup (with ice and liquid) into the bin.",
-            "Pour the remaining ice and coffee into a designated liquid waste bin, then put the cup in the 'Plastic' bin.",
+            "Pour the remaining ice and coffee on the grass or in a storm drain, then put the cup in the 'Plastic' bin.",
             "Take the cup home and use it as a decoration.",
             "Crush the cup with your foot to save space and throw it in 'General Waste'."
         ],

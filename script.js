@@ -111,91 +111,82 @@ if (isResultPage) {
     document.getElementById('final-score').innerText = finalScore;
 
     // 2. 레벨 계산
-    let finalLevel = resultLevels[0];
+    let finalLevel = resultLevels[0]; // 기본값을 가장 낮은 레벨(Tourist)로 설정
+    // 점수에 맞는 레벨 찾기 (낮은 점수부터 순차적으로 비교)
     for (let level of resultLevels) {
         if (finalScore >= level.minScore) {
             finalLevel = level;
         }
     }
 
-    // 레벨 텍스트 표시
-    document.getElementById('level-title').innerText = finalLevel.title;
-    document.getElementById('level-desc').innerText = finalLevel.description;
+    // 3. UI 업데이트
+    const levelTitle = document.getElementById("level-title");
+    const levelDesc = document.getElementById("level-desc");
 
-    // 레벨 이미지 표시
-    const levelImage = document.getElementById('level-image');
-    if (levelImage) levelImage.src = finalLevel.image;
+    if (levelTitle) levelTitle.textContent = finalLevel.title;
+    if (levelDesc) levelDesc.textContent = finalLevel.description;
 
-    // 3. Try Again 버튼 기능
-    const restartBtn = document.getElementById('restart-btn');
-    if (restartBtn) {
-        restartBtn.onclick = () => {
-            localStorage.removeItem('quizScore'); // 점수 초기화
-            window.location.href = 'index.html';
-        };
+    // 레벨별 이미지
+    const levelImage = document.getElementById("level-image"); // 혹시 나중에 추가할 경우를 대비
+    if (levelImage && finalLevel.image) {
+        levelImage.src = finalLevel.image;
     }
 
-    // 4. Copy Link 버튼 기능
-    const webShareBtn = document.getElementById('web-share-btn');
-    if (webShareBtn) {
-        webShareBtn.onclick = async () => {
-            const shareData = {
-                title: 'K-Nunchi Quiz',
-                text: `I scored ${finalScore}/10 (${finalLevel.title}) on the Korean Manners Quiz!`,
-                url: window.location.href
-            };
-
-            if (navigator.share) {
-                // 모바일 공유
-                try { await navigator.share(shareData); } catch (err) { }
-            } else {
-                // PC 클립보드 복사
-                try {
-                    await navigator.clipboard.writeText(`${shareData.text}\n${shareData.url}`);
-                    alert('Link copied to clipboard!');
-                } catch (err) {
-                    alert('Copy failed (Please copy URL manually)');
-                }
-            }
-        };
-    }
-
-    // 5. 카카오톡 공유 기능
-    const kakaoBtn = document.getElementById('kakao-share-btn');
+    // 4. 공유 기능 (finalLevel 정보 사용)
+    const kakaoBtn = document.getElementById("kakao-share-btn");
     if (kakaoBtn) {
-        if (window.Kakao && !Kakao.isInitialized()) {
-            try {
-                Kakao.init('c5ced87e2904c7f993809b80c926c5c3');
-            } catch (e) { console.log('Kakao SDK error'); }
-        }
+        try {
+            if (window.Kakao && !Kakao.isInitialized()) {
+                Kakao.init("c5ced87e2904c7f993809b80c926c5c3");
+            }
+        } catch (e) { console.log("Kakao SDK Error"); }
 
-        kakaoBtn.onclick = () => {
-            if (!window.Kakao || !Kakao.isInitialized()) return;
-
-            // 친구가 눌렀을 때 이동할 주소 (결과 페이지 주소를 index.html로 교체)
+        kakaoBtn.addEventListener("click", () => {
+            if (!window.Kakao) return;
             const shareUrl = window.location.href.replace('result.html', 'index.html');
 
             Kakao.Share.sendDefault({
-                objectType: 'feed',
+                objectType: "feed",
                 content: {
-                    title: '🇰🇷 K-Nunchi Quiz Result',
-                    description: `I scored ${finalScore}/10 (${finalLevel.title}). Can you beat my score?`,
-                    imageUrl: 'https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=800&auto=format&fit=crop', // 원하는 이미지 주소
-                    link: {
-                        mobileWebUrl: shareUrl,
-                        webUrl: shareUrl,
-                    },
+                    title: "🇰🇷 K-Nunchi Quiz Result",
+                    // finalLevel.title을 직접 사용
+                    description: `I scored ${finalScore}/13 (${finalLevel.title}). Can you beat my score?`,
+                    imageUrl: "https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=800&auto=format&fit=crop",
+                    link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
                 },
-                buttons: [
-                    {
-                        title: '나도 풀어보기',
-                        link: {
-                            mobileWebUrl: shareUrl,
-                            webUrl: shareUrl,
-                        },
-                    },
-                ]
+                buttons: [{
+                    title: '나도 풀어보기',
+                    link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
+                }]
             });
-        };
+        });
+    }
+
+    const webShareBtn = document.getElementById("web-share-btn");
+    if (webShareBtn) {
+        webShareBtn.addEventListener("click", async () => {
+            const shareData = {
+                title: "K-Nunchi Result",
+                text: `I got ${finalScore}/13 (${finalLevel.title}) on K-Nunchi Quiz!`,
+                url: window.location.href.replace('result.html', 'index.html'),
+            };
+
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (err) { }
+            } else {
+                try {
+                    await navigator.clipboard.writeText(`${shareData.text}\n${shareData.url}`);
+                    alert("Link copied to clipboard!");
+                } catch (err) { alert("Copy failed"); }
+            }
+        });
+    }
+
+    const restartBtn = document.getElementById("restart-btn");
+    if (restartBtn) {
+        restartBtn.addEventListener("click", () => {
+            localStorage.removeItem("quizScore");
+            window.location.href = "index.html";
+        });
     }
 }
