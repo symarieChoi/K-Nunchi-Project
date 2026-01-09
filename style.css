@@ -551,3 +551,20 @@ body::before {
     display: block;
     margin-bottom: 4px;
 }
+
+.character-result {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.character-result img {
+    width: 180px;
+    margin-bottom: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
