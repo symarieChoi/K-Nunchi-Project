@@ -56,6 +56,7 @@ body {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -72,6 +73,7 @@ h1::before {
 h1::after {
     content: " 🌸";
 }
+
 h1,
 h2 {
     text-align: center;
@@ -144,6 +146,7 @@ h2 {
 #scenario-text::before {
     content: "💬 ";
 }
+
 #scenario-text {
     font-size: 1.1rem;
     line-height: 1.7;
@@ -200,7 +203,7 @@ a.btn {
 /* Hover = pop */
 .option-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -286,6 +289,20 @@ a.btn {
     font-weight: bold;
 }
 
+/* 결과 페이지 캐릭터 이미지 스타일 */
+#level-image {
+    width: 370px;
+    /* 이미지 크기 조절 (원하는 대로 수정 가능) */
+    height: auto;
+    /* 비율 유지 */
+    display: block;
+    /* 가운데 정렬을 위해 필수 */
+    margin: 0 auto 20px;
+    /* 위 0, 좌우 자동(중앙), 아래 20px 여백 */
+    border-radius: 12px;
+    /* 모서리 살짝 둥글게 (선택사항) */
+}
+
 /* =========================
    HANOK–MODERN THEME
    (OVERRIDES)
@@ -305,7 +322,9 @@ body {
 }
 
 /* Titles */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     color: #3b332a;
     font-weight: 600;
     letter-spacing: -0.01em;
@@ -341,6 +360,7 @@ h1, h2, h3 {
     background-color: #e07a5f;
     border-color: #e07a5f;
 }
+
 /* Primary buttons */
 .primary-btn {
     background: linear-gradient(180deg, #ddb892, #d4a373);
@@ -385,7 +405,7 @@ body::before {
     right: 30px;
     width: 300px;
     height: 300px;
-    background-image: url("./hanbok-characters.png");
+    background-image: url("./images/hanbok-characters.png");
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.18;
@@ -408,22 +428,32 @@ body::before {
     height: 260px;
     margin: 20px auto 30px auto;
 
-    background-image: url("./hanbok-characters.png");
+    background-image: url("./images/hanbok-characters.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 
     opacity: 0.9;
 }
+
 @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-18px); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-18px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .start-characters {
     animation: float 2.6s ease-in-out infinite;
 }
+
 /* =========================
    START PAGE – HANOK DOORS
 ========================= */
@@ -433,65 +463,74 @@ body::before {
 ========================= */
 
 .start-page .start-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+    position: relative;
+    width: 100%;
+    height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 /* Doors */
 /* ===== Start Page Doors ===== */
 .start-page .door {
-  position: fixed;
-  top: 50%;
-  width: 400px;
-  transform: translateY(-50%);
-  z-index: 1;
-  pointer-events: none;
+    position: fixed;
+    top: 50%;
+    width: 400px;
+    transform: translateY(-50%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* Left door */
 .start-page .door-left {
-  left: calc(50% - 490px);
+    left: calc(50% - 490px);
 }
 
 /* Right door */
 .start-page .door-right {
-  right: calc(50% - 490px);
-  transform: translateY(-50%) scaleX(-1);
+    right: calc(50% - 490px);
+    transform: translateY(-50%) scaleX(-1);
 }
 
 /* Floating animation (VISIBLE) */
 @keyframes doorFloat {
-  0%   { transform: translateY(-50%) translateY(0); }
-  50%  { transform: translateY(-50%) translateY(-18px); }
-  100% { transform: translateY(-50%) translateY(0); }
+    0% {
+        transform: translateY(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateY(-50%) translateY(-18px);
+    }
+
+    100% {
+        transform: translateY(-50%) translateY(0);
+    }
 }
+
 /* ===== Door Open Animation ===== */
 .start-page .door.open-left {
-  animation: openLeft 1s ease forwards;
+    animation: openLeft 1s ease forwards;
 }
 
 .start-page .door.open-right {
-  animation: openRight 1s ease forwards;
+    animation: openRight 1s ease forwards;
 }
 
 @keyframes openLeft {
-  to {
-    transform: translate(-180%, -50%);
-    opacity: 0;
-  }
+    to {
+        transform: translate(-180%, -50%);
+        opacity: 0;
+    }
 }
 
 @keyframes openRight {
-  to {
-    transform: translate(180%, -50%) scaleX(-1);
-    opacity: 0;
-  }
+    to {
+        transform: translate(180%, -50%) scaleX(-1);
+        opacity: 0;
+    }
 }
 
 /* =========================
@@ -564,7 +603,15 @@ body::before {
 }
 
 @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }

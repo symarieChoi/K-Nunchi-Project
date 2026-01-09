@@ -179,27 +179,27 @@ export const resultLevels = [
         minScore: 0,
         title: "Tourist 🎒",
         description: "Welcome to Korea! Time to learn Nunchi!",
-        image: "level_1.png"
+        image: "images/level_1.png"
     },
     {
         level: 2,
         minScore: 3,
         title: "Loading Nunchi... 👀",
         description: "You're learning — keep observing!",
-        image: "level_2.png"
+        image: "images/level_2.png"
     },
     {
         level: 3,
         minScore: 6,
         title: "K-life Pro 💼",
         description: "You read the room like a local!",
-        image: "level_3.png"
+        image: "images/level_3.png"
     },
     {
         level: 4,
         minScore: 11,
         title: "Almost Korean 🇰🇷✨",
         description: "Perfect! Your Nunchi is level 100. Are you sure you aren't Korean?",
-        image: "level_4.png"
+        image: "images/level_4.png"
     }
 ];
