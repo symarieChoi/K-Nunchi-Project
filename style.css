@@ -289,18 +289,12 @@ a.btn {
     font-weight: bold;
 }
 
-/* 결과 페이지 캐릭터 이미지 스타일 */
 #level-image {
-    width: 370px;
-    /* 이미지 크기 조절 (원하는 대로 수정 가능) */
+    width: 350px;
     height: auto;
-    /* 비율 유지 */
     display: block;
-    /* 가운데 정렬을 위해 필수 */
     margin: 0 auto 20px;
-    /* 위 0, 좌우 자동(중앙), 아래 20px 여백 */
     border-radius: 12px;
-    /* 모서리 살짝 둥글게 (선택사항) */
 }
 
 /* =========================
@@ -394,6 +388,8 @@ h3 {
 .level-card {
     background: #f4ede3;
     border-radius: 16px;
+    text-align: center;
+    padding: 20px;
 }
 
 /* Decorative hanbok image */
