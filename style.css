@@ -149,35 +149,26 @@ h2 {
 }
 
 .situation-text {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     color: var(--text-color);
     margin-bottom: 15px;
     /* 이미지와의 간격 */
 }
+
 .q-image {
     width: 100%;
-    /* 가로폭 꽉 채우기 */
     max-height: 250px;
-    /* 세로가 너무 길어지지 않게 제한 (원하면 조절) */
     object-fit: cover;
-    /* 비율 유지하면서 꽉 채우기 */
     border-radius: 12px;
-    /* 모서리 둥글게 */
     margin-bottom: 15px;
-    /* 글자와 간격 띄우기 */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* 살짝 그림자 */
 }
 
 .question-text {
     font-size: 1.2rem;
-    font-weight: bold;
-    /* 굵게 */
-    color: var(--primary-color);
-    /* 포인트 컬러 */
-    text-align: center;
-    /* 질문은 가운데 정렬 추천 */
+    color: var(--text-color);
+    text-align: left;
     line-height: 1.4;
 }
 
