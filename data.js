@@ -4,6 +4,7 @@ export const quizData = [
     {
         id: 1,
         category: "Cafe Etiquette",
+        img: "./images/q1.png",
         scenario: "You agreed to meet a friend at a nice cafe in Seoul. Your friend arrived 30 minutes early and is already drinking a coffee. You arrive and sit down at the table across from them. You aren't very thirsty.\n\nWhat is the proper etiquette in this situation?",
         options: [
             "Just sit and chat without ordering anything.",
@@ -17,6 +18,7 @@ export const quizData = [
     {
         id: 2,
         category: "Dining",
+        img: "./images/q2.png",
         scenario: "You are at a restaurant with three Korean friends. Everyone ordered different dishes. Your Bibimbap arrived first, but your friends' food hasn't come out yet. The steam is rising from your delicious food.\n\nWhat is the most polite action?",
         options: [
             "Start eating immediately before it gets cold.",
@@ -30,6 +32,7 @@ export const quizData = [
     {
         id: 3,
         category: "Dining",
+        img: "./images/q3.png",
         scenario: "You walk into a busy, casual Korean BBQ restaurant. The staff are running around very busy, and there isn't a 'Host' standing at the door with a list. You see two empty tables in the corner.\n\nHow should you get a table?",
         options: [
             "Stand stiffly at the entrance and wait 10 minutes for someone to guide you.",
@@ -43,6 +46,7 @@ export const quizData = [
     {
         id: 4,
         category: "Transportation",
+        img: "./images/q4.png",
         scenario: "You are riding a bus. It is getting crowded, but you spot a bright Yellow seat near the front. Later, you transfer to the subway and see an empty Pink seat. You are young and healthy, but your legs are a bit tired.\n\nCan you sit in these seats?",
         options: [
             "Yes, if they are empty, anyone can sit there.",
@@ -56,6 +60,7 @@ export const quizData = [
     {
         id: 5,
         category: "House Etiquette",
+        img: "./images/q5.png",
         scenario: "You are invited to dinner at your Korean friend's house. As soon as you open the front door, you see the living room. The floor looks very clean.\n\nWhat is the most appropriate action with your sneakers?",
         options: [
             "Walk naturally to the living room sofa while wearing your sneakers.",
@@ -69,6 +74,7 @@ export const quizData = [
     {
         id: 6,
         category: "Dining",
+        img: "./images/q6.png",
         scenario: "You entered a Korean restaurant. You’ve picked your menu items and are ready to order, but the server is far away doing other tasks. 10 minutes pass, and no one comes to your table. You are very hungry.\n\nWhat is the correct way to place your order?",
         options: [
             "Wait quietly until a server makes eye contact with you.",
@@ -82,6 +88,7 @@ export const quizData = [
     {
         id: 7,
         category: "Transportation",
+        img: "./images/q7.png",
         scenario: "You are on the subway. Your legs hurt and you want to sit down. You notice one empty seat at the end of the car that is pink. There are many people standing nearby, but no one is sitting there.\n\nWhat should you do?",
         options: [
             "Lucky! Run over and sit down immediately.",
@@ -95,6 +102,7 @@ export const quizData = [
     {
         id: 8,
         category: "Money & Tipping",
+        img: "./images/q8.png",
         scenario: "You just had delicious Bulgogi at a restaurant, and the staff kindly grilled the meat for you. You are touched by the service and want to show your appreciation after paying.\n\nWhich action might cause a misunderstanding in Korea?",
         options: [
             "Bow and say 'Jal meogeot-seumnida' (Thank you for the meal) as you leave.",
@@ -108,6 +116,7 @@ export const quizData = [
     {
         id: 9,
         category: "Recycling",
+        img: "./images/q9.png",
         scenario: "You finished a takeaway Iced Americano on the street. Inside the plastic cup, there is still some ice and a little bit of coffee left. You found a trash bin!\n\nWhat is the perfect way to dispose of this cup?",
         options: [
             "Throw the whole cup (with ice and liquid) into the bin.",
@@ -121,6 +130,7 @@ export const quizData = [
     {
         id: 10,
         category: "Drinking Culture",
+        img: "./images/q10.png",
         scenario: "You are having dinner with your Korean boss or an older Korean friend. They pick up a bottle of Soju to pour a drink for you. You want to be polite and show respect.\n\nHow should you receive the drink?",
         options: [
             "Hold your glass out with one hand casually.",
@@ -135,6 +145,7 @@ export const quizData = [
     {
         id: 11,
         category: "Drinking Culture",
+        img: "./images/q11.png",
         scenario: "You are drinking with a senior mentor you respect very much. You want to pour them a glass of Soju to show your gratitude. You pick up the bottle with two hands.\n\nWhat is the most sophisticated and polite detail to add while pouring?",
         options: [
             "Shake the bottle vigorously to mix it.",
@@ -148,6 +159,7 @@ export const quizData = [
     {
         id: 12,
         category: "Social Etiquette",
+        img: "./images/q12.png",
         scenario: "You just had a great lunch with a Korean friend. You tried to pay, but your friend insisted and paid for the whole meal. They refuse to take your cash when you try to pay them back.\n\nWhat is the best way to return the favor?",
         options: [
             "Say 'Thank you' and just go home.",
@@ -161,6 +173,7 @@ export const quizData = [
     {
         id: 13,
         category: "Public Etiquette",
+        img: "./images/q13.png",
         scenario: "You are in a quiet library or an elevator. The Korean person standing next to you suddenly sneezes loudly. 'Achoo!!'\n\nWhat is the proper reaction in Korea?",
         options: [
             "Say 'Bless you!' with a smile.",

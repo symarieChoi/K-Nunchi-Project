@@ -29,6 +29,7 @@ if (isQuizPage) {
     let score = 0;
 
     const scenarioText = document.getElementById('scenario-text');
+    const scenarioImg = document.getElementById('scenario-img');
     const optionsContainer = document.getElementById('options-container');
     const progressText = document.getElementById('progress-text');
     const progressFill = document.getElementById('progress-fill');
@@ -56,6 +57,14 @@ if (isQuizPage) {
         nextBtn.disabled = false; // 버튼 활성화
 
         categoryBadge.innerText = currentQuestion.category;
+
+        if (currentQuestion.img) {
+            scenarioImg.src = currentQuestion.img;
+            scenarioImg.style.display = 'block'; // 이미지가 있으면 보여주기
+        } else {
+            scenarioImg.style.display = 'none'; // 이미지가 없으면 숨기기 (에러 방지)
+        }
+
         scenarioText.innerText = currentQuestion.scenario;
         progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
         progressFill.style.width = `${(currentQuestionIndex / quizData.length) * 100}%`;
