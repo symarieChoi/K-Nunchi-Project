@@ -89,15 +89,15 @@ export const quizData = [
         id: 7,
         category: "Transportation",
         img: "./images/q7.png",
-        scenario: "You are on the subway. Your legs hurt and you want to sit down. You notice one empty seat at the end of the car that is pink. There are many people standing nearby, but no one is sitting there.\n\nWhat should you do?",
+        scenario: "You board a very crowded subway train in Seoul. You are very tired. You notice that the section with three seats at the far end of the car is completely empty, even though people are standing in the aisle.\n\nWhat is the safest action for a traveler?",
         options: [
-            "Lucky! Run over and sit down immediately.",
-            "Leave it empty unless you are pregnant.",
-            "Put your heavy bag on the seat and stand next to it.",
-            "Sit down and share half the seat with your friend."
+            "Lucky! Rush over and sit down immediately.",
+            "Sit down and close your eyes to pretend you are asleep.",
+            "Remain standing in the aisle and leave those specific seats empty.",
+            "Put your heavy backpack on the seat to reserve it."
         ],
-        correctIndex: 1,
-        explanation: "The pink seats are designated as 'Priority Seats for Pregnant Women.' In Korea, it is good manners to leave these seats empty for potential pregnant passengers, even if the train is crowded."
+        correctIndex: 3,
+        explanation: "The seats at the far ends of each subway car are designated for the elderly, disabled, and pregnant women. In Korea, there is a social norm to leave these seats completely empty at all times, even if the train is packed. If a young, healthy person sits there, it can make elderly passengers feel uncomfortable or hesitant to approach the seat. Therefore, the most respectful action is to simply remain standing in the aisle."
     },
     {
         id: 8,
