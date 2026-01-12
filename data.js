@@ -96,7 +96,7 @@ export const quizData = [
             "Remain standing in the aisle and leave those specific seats empty.",
             "Put your heavy backpack on the seat to reserve it."
         ],
-        correctIndex: 3,
+        correctIndex: 2,
         explanation: "The seats at the far ends of each subway car are designated for the elderly, disabled, and pregnant women. In Korea, there is a social norm to leave these seats completely empty at all times, even if the train is packed. If a young, healthy person sits there, it can make elderly passengers feel uncomfortable or hesitant to approach the seat. Therefore, the most respectful action is to simply remain standing in the aisle."
     },
     {
@@ -110,7 +110,7 @@ export const quizData = [
             "Tell the cashier, 'The food was amazing.'",
             "Just take the receipt and leave."
         ],
-        correctIndex: 4,
+        correctIndex: 0,
         explanation: "Korea does not have a tipping culture. If you leave money on the table, the staff might think you lost your money. The best tip is a sincere 'Thank you.'"
     },
     {
