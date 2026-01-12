@@ -164,7 +164,7 @@ export const quizData = [
         options: [
             "Say 'Thank you' and just go home.",
             "Force the cash into their pocket or bag.",
-            "Say, 'Then I'll get the coffee!' and take them to a cafe.",
+            "Say, 'Then I'll get the coffee!' and take them to a coffee shop.",
             "Calculate exactly 50% of the bill and bank transfer it to them immediately."
         ],
         correctIndex: 2,
