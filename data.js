@@ -110,7 +110,7 @@ export const quizData = [
             "Tell the cashier, 'The food was amazing.'",
             "Just take the receipt and leave."
         ],
-        correctIndex: 1,
+        correctIndex: 4,
         explanation: "Korea does not have a tipping culture. If you leave money on the table, the staff might think you lost your money. The best tip is a sincere 'Thank you.'"
     },
     {
