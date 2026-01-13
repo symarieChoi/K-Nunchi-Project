@@ -92,30 +92,29 @@ if (isQuizPage) {
         });
     }
 
-    function selectOption(index, btn) {
-        const buttons = document.querySelectorAll('.option-btn');
-        buttons.forEach(b => b.disabled = true);
+function selectOption(index, btn) {
+    const buttons = document.querySelectorAll('.option-btn');
+    buttons.forEach(b => b.disabled = true);
 
-   const selectedIndex = Number(button.dataset.index);
+    if (index === currentQuestion.correctIndex) {
+        score++;
+        btn.classList.add('correct');
 
-if (selectedIndex === currentQuestion.correctIndex) {
-    score++;
-    button.classList.add('correct');
+        feedbackTitle.innerText = "✅ That's Correct!";
+        feedbackTitle.style.color = "var(--correct-color)";
+    } else {
+        btn.classList.add('wrong');
 
-    feedbackTitle.innerText = "✅ That's Correct!";
-    feedbackTitle.style.color = "var(--correct-color)";
-} else {
-    button.classList.add('wrong');
+        buttons[currentQuestion.correctIndex].classList.add('correct');
 
-    buttons[currentQuestion.correctIndex].classList.add('correct');
+        feedbackTitle.innerText = "❌ Oops!";
+        feedbackTitle.style.color = "var(--wrong-color)";
+    }
 
-    feedbackTitle.innerText = "❌ Oops!";
-    feedbackTitle.style.color = "var(--wrong-color)";
+    explanationText.innerText = currentQuestion.explanation;
+    feedbackArea.classList.remove('hidden');
 }
 
-        explanationText.innerText = currentQuestion.explanation;
-        feedbackArea.classList.remove('hidden');
-    }
 
     nextBtn.onclick = () => {
         currentQuestionIndex++;
