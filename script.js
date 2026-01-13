@@ -281,7 +281,7 @@ if (isResultPage) {
         webShareBtn.addEventListener("click", async () => {
             const shareData = {
                 title: "K-Nunchi Result",
-                text: `I got ${finalScore}/13 (${finalLevel.title}) on K-Nunchi Quiz!\n`,
+                text: `I got ${finalScore}/13 (${finalLevel.title}) on K-Nunchi Quiz!`,
                 url: window.location.href.replace('result.html', 'index.html'),
             };
 
