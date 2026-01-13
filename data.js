@@ -103,15 +103,15 @@ export const quizData = [
         id: 8,
         category: "Money & Tipping",
         img: "./images/q8.png",
-        scenario: "You just had delicious Bulgogi at a restaurant, and the staff kindly grilled the meat for you. You are touched by the service and want to show your appreciation after paying.\n\nWhich action might cause a misunderstanding in Korea?",
+        scenario: "You just had delicious Bulgogi at a restaurant, and the staff kindly grilled the meat for you. You are touched by the service and want to show your appreciation after paying.\n\nWhich is the most proper action in this situation?",
         options: [
             "Bow and say 'Jal meogeot-seumnida' (Thank you for the meal) as you leave.",
             "Quietly leave a 10,000 won bill on the table and walk out.",
-            "Tell the cashier, 'The food was amazing.'",
+            "Hand a cash tip directly to the staff member.'",
             "Just take the receipt and leave."
         ],
         correctIndex: 0,
-        explanation: "Korea does not have a tipping culture. If you leave money on the table, the staff might think you lost your money. The best tip is a sincere 'Thank you.'"
+        explanation: "Korea has a no-tipping culture. \n\n• Why 1 is the best: A sincere bow and saying 'Jal meogeot-seumnida'(I ate well / Thank you for the meal) is the standard and most polite way to express gratitude to the staff and owner.\n\n• Why not 2 or 3: Tipping is not expected or required.Leaving money on the table or trying to hand cash to a server can be considered awkward, or they might think you simply forgot your change and will run after you to return it."
     },
     {
         id: 9,
