@@ -85,9 +85,13 @@ h2 {
     content: "🎀 ";
 }
 
+.score-box::after {
+    content: " 🎀";
+}
+
 .score-box {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
     margin: 20px 0;
 }
