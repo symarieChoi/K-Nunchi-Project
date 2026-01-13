@@ -52,44 +52,70 @@ if (isQuizPage) {
             options: shuffled.options,
             correctIndex: shuffled.correctIndex
         };
-        // 화면 초기화
-        feedbackArea.classList.add('hidden');
-        optionsContainer.innerHTML = '';
-        nextBtn.disabled = false; // 버튼 활성화
 
-        // 텍스트 & 이미지 설정
-        categoryBadge.innerText = currentQuestion.category;
+        // 1. 화면을 갱신하는 로직을 함수로 따로 묶어둡니다. (나중에 부르기 위해)
+        const updateScreen = () => {
+            // 화면 초기화
+            feedbackArea.classList.add('hidden');
+            optionsContainer.innerHTML = '';
+            nextBtn.disabled = false;
 
-        // 시나리오 상황/질문으로 쪼개기
-        const parts = currentQuestion.scenario.split('\n\n');
-        if (parts.length > 1) {
-            situationText.innerText = parts[0]; // 앞부분
-            questionText.innerText = parts[1];  // 뒷부분
-        } else {
-            // 줄바꿈이 없는 데이터라면 그냥 위에 다 넣음
-            situationText.innerText = currentQuestion.scenario;
-            questionText.innerText = "";
-        }
+            // 텍스트 설정 (이제야 바뀝니다)
+            categoryBadge.innerText = currentQuestion.category;
 
-        // 이미지 처리
+            // 시나리오 상황/질문 쪼개기
+            const parts = currentQuestion.scenario.split('\n\n');
+            if (parts.length > 1) {
+                situationText.innerText = parts[0];
+                questionText.innerText = parts[1];
+            } else {
+                situationText.innerText = currentQuestion.scenario;
+                questionText.innerText = "";
+            }
+
+            // 진행도 표시
+            progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
+            progressFill.style.width = `${(currentQuestionIndex / quizData.length) * 100}%`;
+
+            // 버튼 생성
+            currentQuestion.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(i, btn);
+                optionsContainer.appendChild(btn);
+            });
+        };
+
+        // 2. 이미지 로딩 처리 (핵심 변경 부분)
         if (currentQuestion.img) {
-            scenarioImg.src = currentQuestion.img;
-            scenarioImg.style.display = 'block'; // 이미지가 있으면 보여주기
+            // 사용자에게 '로딩 중'임을 살짝 티냅니다 (기존 이미지를 흐리게)
+            scenarioImg.style.opacity = '0.3';
+
+            // 가상의 이미지 객체로 미리 로드
+            const tempImg = new Image();
+            tempImg.src = currentQuestion.img;
+
+            // "이미지 로딩이 끝나면" 실행될 코드
+            tempImg.onload = () => {
+                scenarioImg.src = currentQuestion.img; // 실제 이미지 교체
+                scenarioImg.style.display = 'block';
+                scenarioImg.style.opacity = '1';       // 다시 선명하게
+
+                updateScreen(); // ★ 여기서 텍스트와 버튼도 같이 바꿉니다!
+            };
+
+            // 혹시 이미지가 깨지거나 로딩 실패해도 퀴즈는 진행되어야 함
+            tempImg.onerror = () => {
+                scenarioImg.style.display = 'none'; // 이미지 숨김
+                updateScreen(); // 텍스트라도 보여줌
+            };
+
         } else {
-            scenarioImg.style.display = 'none'; // 이미지가 없으면 숨기기 (에러 방지)
+            // 이미지가 없는 문제라면 그냥 즉시 실행
+            scenarioImg.style.display = 'none';
+            updateScreen();
         }
-
-        // 진행도 표시
-        progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
-        progressFill.style.width = `${(currentQuestionIndex / quizData.length) * 100}%`;
-
-        currentQuestion.options.forEach((opt, i) => {
-            const btn = document.createElement('button');
-            btn.className = 'btn option-btn';
-            btn.innerText = opt;
-            btn.onclick = () => selectOption(i, btn);
-            optionsContainer.appendChild(btn);
-        });
     }
 
     function preloadImages() {
@@ -189,13 +215,13 @@ if (isResultPage) {
             // 캡처할 때만 애니메이션 강제로 끄기
             if (activeScreen) {
                 activeScreen.style.animation = 'none';
-                activeScreen.style.opacity = '1'; 
+                activeScreen.style.opacity = '1';
             }
 
             // 캡처 시작
             html2canvas(captureArea, {
                 backgroundColor: "#fffaf2",
-                scale: 3,       
+                scale: 3,
                 useCORS: true,
                 allowTaint: true,
                 scrollY: 0,
