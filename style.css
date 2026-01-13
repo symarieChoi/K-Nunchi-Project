@@ -246,6 +246,7 @@ a.btn {
     background-color: #f1f3f5;
     border-radius: 8px;
     border-left: 5px solid var(--primary-color);
+    line-height: 1.6;
 }
 
 .feedback.hidden {
