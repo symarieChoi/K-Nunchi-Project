@@ -318,6 +318,9 @@ a.btn {
 }
 
 #level-image {
+    /* 모바일에서는 부모 박스 너비를 넘지 않도록 제한 */
+    max-width: 100%;
+    /* PC에서는 350px 크기 유지 */
     width: 350px;
     height: auto;
     display: block;
