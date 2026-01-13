@@ -152,8 +152,8 @@ h2 {
     font-size: 1.2rem;
     line-height: 1.6;
     color: var(--text-color);
-    margin-bottom: 15px;
     /* 이미지와의 간격 */
+    margin-bottom: 15px;
 }
 
 .q-image {
@@ -264,6 +264,10 @@ a.btn {
     margin-top: 15px;
 }
 
+/* =========================
+   LEVEL GUIDE
+========================= */
+
 /* Level card */
 .level-card {
     background: #f4ede3;
@@ -273,9 +277,6 @@ a.btn {
     margin-bottom: 10px;
 }
 
-/* =========================
-   LEVEL GUIDE
-========================= */
 .level-guide-box {
     background-color: #f8f9fa;
     border: 1px solid #e9ecef;
@@ -591,6 +592,10 @@ body::before {
     color: #555;
     border-radius: 4px;
 }
+
+/* =========================
+   DESCRIPTION PAGE STYLES
+========================= */
 
 /* 눈치 정의 박스 */
 .definition-box {

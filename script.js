@@ -178,13 +178,13 @@ if (isResultPage) {
             // 캡처할 때만 애니메이션 강제로 끄기
             if (activeScreen) {
                 activeScreen.style.animation = 'none';
-                activeScreen.style.opacity = '1';
+                activeScreen.style.opacity = '1'; 
             }
 
             // 캡처 시작
             html2canvas(captureArea, {
                 backgroundColor: "#fffaf2",
-                scale: 3,
+                scale: 3,       
                 useCORS: true,
                 allowTaint: true,
                 scrollY: 0,
