@@ -66,7 +66,7 @@ if (isQuizPage) {
             situationText.innerText = parts[0]; // 앞부분
             questionText.innerText = parts[1];  // 뒷부분
         } else {
-            // 만약 줄바꿈이 없는 데이터라면 그냥 위에 다 넣음
+            // 줄바꿈이 없는 데이터라면 그냥 위에 다 넣음
             situationText.innerText = currentQuestion.scenario;
             questionText.innerText = "";
         }
@@ -95,22 +95,22 @@ if (isQuizPage) {
     function selectOption(index, btn) {
         const buttons = document.querySelectorAll('.option-btn');
         buttons.forEach(b => b.disabled = true);
-    
+
         if (index === currentQuestion.correctIndex) {
             score++;
             btn.classList.add('correct');
-    
+
             feedbackTitle.innerText = "✅ That's Correct!";
             feedbackTitle.style.color = "var(--correct-color)";
         } else {
             btn.classList.add('wrong');
-    
+
             buttons[currentQuestion.correctIndex].classList.add('correct');
-    
+
             feedbackTitle.innerText = "❌ Oops!";
             feedbackTitle.style.color = "var(--wrong-color)";
         }
-    
+
         explanationText.innerText = currentQuestion.explanation;
         feedbackArea.classList.remove('hidden');
     }
@@ -157,6 +157,56 @@ if (isResultPage) {
     const levelImage = document.getElementById("level-image"); // 혹시 나중에 추가할 경우를 대비
     if (levelImage && finalLevel.image) {
         levelImage.src = finalLevel.image;
+    }
+
+    // 3. 이미지 저장 기능 (html2canvas 사용)
+    const saveImgBtn = document.getElementById('save-img-btn');
+
+    if (saveImgBtn) {
+        saveImgBtn.onclick = () => {
+            const captureArea = document.querySelector('.app-container');
+            const shareBox = document.querySelector('.share-box');
+            const restartBtn = document.getElementById('restart-btn');
+
+            // 현재 활성화된 화면(.screen.active)을 찾기
+            const activeScreen = document.querySelector('.screen.active');
+
+            // 버튼 잠시 숨기기
+            if (shareBox) shareBox.style.display = 'none';
+            if (restartBtn) restartBtn.style.display = 'none';
+
+            // 캡처할 때만 애니메이션 강제로 끄기
+            if (activeScreen) {
+                activeScreen.style.animation = 'none';
+                activeScreen.style.opacity = '1';
+            }
+
+            // 캡처 시작
+            html2canvas(captureArea, {
+                backgroundColor: "#fffaf2",
+                scale: 3,
+                useCORS: true,
+                allowTaint: true,
+                scrollY: 0,
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'k-nunchi-result.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                // 원상 복구 (버튼 다시 보이기)
+                if (shareBox) shareBox.style.display = 'block';
+                if (restartBtn) restartBtn.style.display = 'block';
+
+            }).catch(err => {
+                console.error("Capture failed:", err);
+                alert("Image save failed.");
+
+                // 에러 나도 버튼은 복구
+                if (shareBox) shareBox.style.display = 'block';
+                if (restartBtn) restartBtn.style.display = 'block';
+            });
+        };
     }
 
     // 4. 공유 기능 (finalLevel 정보 사용)
@@ -209,6 +259,7 @@ if (isResultPage) {
         });
     }
 
+    // 5. 다시 풀기 기능
     const restartBtn = document.getElementById("restart-btn");
     if (restartBtn) {
         restartBtn.addEventListener("click", () => {
