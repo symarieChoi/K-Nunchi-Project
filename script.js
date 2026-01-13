@@ -265,7 +265,7 @@ if (isResultPage) {
                     title: "🇰🇷 K-Nunchi Quiz Result",
                     // finalLevel.title을 직접 사용
                     description: `I scored ${finalScore}/13 (${finalLevel.title}). Can you beat my score?`,
-                    imageUrl: "https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=800&auto=format&fit=crop",
+                    imageUrl: "https://symariechoi.github.io/K-Nunchi-Project/images/hanbok-characters.png",
                     link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
                 },
                 buttons: [{
