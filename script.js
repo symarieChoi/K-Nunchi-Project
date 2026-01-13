@@ -269,7 +269,7 @@ if (isResultPage) {
                     link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
                 },
                 buttons: [{
-                    title: '나도 풀어보기',
+                    title: 'Try it',
                     link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
                 }]
             });
