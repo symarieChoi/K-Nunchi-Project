@@ -111,7 +111,7 @@ export const quizData = [
             "Just take the receipt and leave."
         ],
         correctIndex: 0,
-        explanation: "Korea has a no-tipping culture. A sincere bow and saying 'Jal meogeot-seumnida'(I ate well / Thank you for the meal) is the standard and most polite way to express gratitude to the staff and owner. In addition, Tipping is not expected or required. Leaving money on the table or trying to hand cash to a server can be considered awkward, or they might think you simply forgot your change and will run after you to return it."
+        explanation: "Korea has a no-tipping culture. A sincere bow and saying 'Jal meogeot-seumnida'(I ate well / Thank you for the meal) is the standard and most polite way to express gratitude to the staff and owner. In addition, tipping is not expected or required in Korea. Leaving money on the table or trying to hand cash to a server can be considered awkward, or they might think you simply forgot your change and will run after you to return it."
     },
     {
         id: 9,
@@ -120,7 +120,7 @@ export const quizData = [
         scenario: "You finished a takeaway Iced Americano on the street. Inside the plastic cup, there is still some ice and a little bit of coffee left. You found a trash bin!\n\nWhat is the perfect way to dispose of this cup?",
         options: [
             "Throw the whole cup (with ice and liquid) into the bin.",
-            "Pour the remaining ice and coffee on the grass or in a storm drain, then put the cup in the 'Plastic' bin.",
+            "Pour the remaining ice and coffee in a storm drain, then put the cup in the 'Plastic' bin.",
             "Take the cup home and use it as a decoration.",
             "Crush the cup with your foot to save space and throw it in 'General Waste'."
         ],
