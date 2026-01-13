@@ -92,6 +92,17 @@ if (isQuizPage) {
         });
     }
 
+    function preloadImages() {
+        quizData.forEach((question) => {
+            // 이미지 객체를 생성하여 미리 로드 (화면에는 안 보임)
+            const img = new Image();
+            img.src = question.img; // 데이터에서 이미지 경로가 있는 속성명 (예: .img, .imageSrc 등)
+        });
+    }
+
+    // 페이지가 로드되거나 퀴즈가 시작될 때 이 함수를 한 번 실행
+    preloadImages();
+
     function selectOption(index, btn) {
         const buttons = document.querySelectorAll('.option-btn');
         buttons.forEach(b => b.disabled = true);
