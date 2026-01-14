@@ -5,7 +5,7 @@ const isResultPage = document.getElementById('result-page');
 
 let currentQuestion = null;
 
-// shuffle function
+// Shuffle function
 function shuffleOptions(options, correctIndex) {
     const arr = options.map((text, i) => ({
         text,
@@ -23,7 +23,7 @@ function shuffleOptions(options, correctIndex) {
     };
 }
 
-// quiz page logic
+// Quiz page logic
 if (isQuizPage) {
     let currentQuestionIndex = 0;
     let score = 0;
@@ -44,7 +44,7 @@ if (isQuizPage) {
 
     function loadQuestion() {
         const base = quizData[currentQuestionIndex];
-        // 셔플 기능 적용
+        // Apply shuffle function
         const shuffled = shuffleOptions(base.options, base.correctIndex);
 
         currentQuestion = {
@@ -53,17 +53,17 @@ if (isQuizPage) {
             correctIndex: shuffled.correctIndex
         };
 
-        // 1. 화면을 갱신하는 로직을 함수로 따로 묶어둡니다. (나중에 부르기 위해)
+        // 1. Function to update the UI
         const updateScreen = () => {
-            // 화면 초기화
+            // Reset screen/UI
             feedbackArea.classList.add('hidden');
             optionsContainer.innerHTML = '';
             nextBtn.disabled = false;
 
-            // 텍스트 설정 (이제야 바뀝니다)
+            // Set text content
             categoryBadge.innerText = currentQuestion.category;
 
-            // 시나리오 상황/질문 쪼개기
+            // Split scenario into situation and question parts
             const parts = currentQuestion.scenario.split('\n\n');
             if (parts.length > 1) {
                 situationText.innerText = parts[0];
@@ -73,11 +73,11 @@ if (isQuizPage) {
                 questionText.innerText = "";
             }
 
-            // 진행도 표시
+            // Upgrade progress bar/text
             progressText.innerText = `${currentQuestionIndex + 1} / ${quizData.length}`;
             progressFill.style.width = `${(currentQuestionIndex / quizData.length) * 100}%`;
 
-            // 버튼 생성
+            // Create option buttons
             currentQuestion.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
                 btn.className = 'btn option-btn';
@@ -87,32 +87,32 @@ if (isQuizPage) {
             });
         };
 
-        // 2. 이미지 로딩 처리 (핵심 변경 부분)
+        // 2. Handle image loading
         if (currentQuestion.img) {
-            // 사용자에게 '로딩 중'임을 살짝 티냅니다 (기존 이미지를 흐리게)
+            // Indicate loading state to user (dim the current image)
             scenarioImg.style.opacity = '0.3';
 
-            // 가상의 이미지 객체로 미리 로드
+            // Preload using a virtual image object
             const tempImg = new Image();
             tempImg.src = currentQuestion.img;
 
-            // "이미지 로딩이 끝나면" 실행될 코드
+            // Code to execute when image loading is complete
             tempImg.onload = () => {
-                scenarioImg.src = currentQuestion.img; // 실제 이미지 교체
+                scenarioImg.src = currentQuestion.img; // Update actual image source
                 scenarioImg.style.display = 'block';
-                scenarioImg.style.opacity = '1';       // 다시 선명하게
+                scenarioImg.style.opacity = '1';       // Restore opacity
 
-                updateScreen(); // ★ 여기서 텍스트와 버튼도 같이 바꿉니다!
+                updateScreen(); // Update text and buttons simutaneously
             };
 
-            // 혹시 이미지가 깨지거나 로딩 실패해도 퀴즈는 진행되어야 함
+            // Ensure quiz continues even if image loading fails
             tempImg.onerror = () => {
-                scenarioImg.style.display = 'none'; // 이미지 숨김
-                updateScreen(); // 텍스트라도 보여줌
+                scenarioImg.style.display = 'none'; // Hide image
+                updateScreen(); // Show text content at least
             };
 
         } else {
-            // 이미지가 없는 문제라면 그냥 즉시 실행
+            // Execute immediately if no image exists
             scenarioImg.style.display = 'none';
             updateScreen();
         }
@@ -120,13 +120,13 @@ if (isQuizPage) {
 
     function preloadImages() {
         quizData.forEach((question) => {
-            // 이미지 객체를 생성하여 미리 로드 (화면에는 안 보임)
+            // Create image objects to preload (invisible on screen)
             const img = new Image();
-            img.src = question.img; // 데이터에서 이미지 경로가 있는 속성명 (예: .img, .imageSrc 등)
+            img.src = question.img;
         });
     }
 
-    // 페이지가 로드되거나 퀴즈가 시작될 때 이 함수를 한 번 실행
+    // Execute this function once when page loads or quiz starts
     preloadImages();
 
     function selectOption(index, btn) {
@@ -158,45 +158,45 @@ if (isQuizPage) {
         if (currentQuestionIndex < quizData.length) {
             loadQuestion();
         } else {
-            // 점수 저장 후 이동
+            // Save score and redirect
             localStorage.setItem('quizScore', score);
             window.location.href = 'result.html';
         }
     };
 }
 
-// result page logic
+// Result page logic
 if (isResultPage) {
-    // 1. 점수 불러오기
+    // 1. Retrieve score
     const savedScore = localStorage.getItem('quizScore');
     const finalScore = savedScore ? parseInt(savedScore) : 0;
 
-    // 점수 화면 표시
+    // Display score on screen
     document.getElementById('final-score').innerText = finalScore;
 
-    // 2. 레벨 계산
-    let finalLevel = resultLevels[0]; // 기본값을 가장 낮은 레벨(Tourist)로 설정
-    // 점수에 맞는 레벨 찾기 (낮은 점수부터 순차적으로 비교)
+    // 2. Calculate level
+    let finalLevel = resultLevels[0]; // Set default to lowest level (Tourist)
+    // Find matching level (compare from lowest score)
     for (let level of resultLevels) {
         if (finalScore >= level.minScore) {
             finalLevel = level;
         }
     }
 
-    // 3. UI 업데이트
+    // 3. Update UI
     const levelTitle = document.getElementById("level-title");
     const levelDesc = document.getElementById("level-desc");
 
     if (levelTitle) levelTitle.textContent = finalLevel.title;
     if (levelDesc) levelDesc.textContent = finalLevel.description;
 
-    // 레벨별 이미지
-    const levelImage = document.getElementById("level-image"); // 혹시 나중에 추가할 경우를 대비
+    // Level-specific image
+    const levelImage = document.getElementById("level-image");
     if (levelImage && finalLevel.image) {
         levelImage.src = finalLevel.image;
     }
 
-    // 3. 이미지 저장 기능 (html2canvas 사용)
+    // 3. Image save function (using html2canvas)
     const saveImgBtn = document.getElementById('save-img-btn');
 
     if (saveImgBtn) {
@@ -205,20 +205,20 @@ if (isResultPage) {
             const shareBox = document.querySelector('.share-box');
             const restartBtn = document.getElementById('restart-btn');
 
-            // 현재 활성화된 화면(.screen.active)을 찾기
+            // Find currently active screen
             const activeScreen = document.querySelector('.screen.active');
 
-            // 버튼 잠시 숨기기
+            // Temporarily hide buttons
             if (shareBox) shareBox.style.display = 'none';
             if (restartBtn) restartBtn.style.display = 'none';
 
-            // 캡처할 때만 애니메이션 강제로 끄기
+            // Force disable animation during capture
             if (activeScreen) {
                 activeScreen.style.animation = 'none';
                 activeScreen.style.opacity = '1';
             }
 
-            // 캡처 시작
+            // Start capture
             html2canvas(captureArea, {
                 backgroundColor: "#fffaf2",
                 scale: 3,
@@ -231,7 +231,7 @@ if (isResultPage) {
                 link.href = canvas.toDataURL('image/png');
                 link.click();
 
-                // 원상 복구 (버튼 다시 보이기)
+                // Restore UI (show buttons again)
                 if (shareBox) shareBox.style.display = 'block';
                 if (restartBtn) restartBtn.style.display = 'block';
 
@@ -239,14 +239,14 @@ if (isResultPage) {
                 console.error("Capture failed:", err);
                 alert("Image save failed.");
 
-                // 에러 나도 버튼은 복구
+                // Restore buttons even on error
                 if (shareBox) shareBox.style.display = 'block';
                 if (restartBtn) restartBtn.style.display = 'block';
             });
         };
     }
 
-    // 4. 공유 기능 (finalLevel 정보 사용)
+    // 4. Share function (uses finalLevel info)
     const kakaoBtn = document.getElementById("kakao-share-btn");
     if (kakaoBtn) {
         try {
@@ -263,7 +263,7 @@ if (isResultPage) {
                 objectType: "feed",
                 content: {
                     title: "🇰🇷 K-Nunchi Quiz Result",
-                    // finalLevel.title을 직접 사용
+                    // Use finalLevel.title directly
                     description: `I scored ${finalScore}/13 (${finalLevel.title}). Can you beat my score?`,
                     imageUrl: "https://symariechoi.github.io/K-Nunchi-Project/images/hanbok-characters.png",
                     link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
@@ -296,7 +296,7 @@ if (isResultPage) {
         });
     }
 
-    // 5. 다시 풀기 기능
+    // 5. Restart function
     const restartBtn = document.getElementById("restart-btn");
     if (restartBtn) {
         restartBtn.addEventListener("click", () => {
