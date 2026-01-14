@@ -1,5 +1,3 @@
-// data.js
-
 export const quizData = [
     {
         id: 1,
