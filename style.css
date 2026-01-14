@@ -358,6 +358,8 @@ h3 {
     color: #3b332a;
     font-weight: 600;
     letter-spacing: -0.01em;
+    white-space: nowrap;
+    font-size: clamp(1.2rem, 6vw, 2.5rem);
 }
 
 /* Category badge */
@@ -572,7 +574,7 @@ body::before {
 }
 
 /* src 속성이 비어있거나 없는 이미지는 숨김 처리 */
-img[src=""], 
+img[src=""],
 img:not([src]) {
     display: none;
     visibility: hidden;
