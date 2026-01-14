@@ -1,5 +1,5 @@
 /* =========================
-   COLOR VARIABLES
+    COLOR VARIABLES
 ========================= */
 :root {
     --primary-color: #3b5bdb;
@@ -13,7 +13,7 @@
 }
 
 /* =========================
-   RESET & BASE
+    RESET & BASE
 ========================= */
 * {
     box-sizing: border-box;
@@ -24,7 +24,7 @@
 
 
 /* =========================
-   LAYOUT
+    LAYOUT
 ========================= */
 body {
     background-color: var(--bg-color);
@@ -64,7 +64,7 @@ body {
 }
 
 /* =========================
-   HEADINGS & TEXT
+    HEADINGS & TEXT
 ========================= */
 h1::before {
     content: "🌸 ";
@@ -83,11 +83,8 @@ h2 {
 
 h1 {
     white-space: nowrap;
-    /* 강제로 한 줄로 유지 */
-    /* 최소 1.4rem ~ 최대 2.5rem 사이에서, 화면 너비의 6% 크기로 자동 조절 */
     font-size: clamp(1.4rem, 6vw, 2.5rem);
     width: 100%;
-    /* 박스 꽉 채우기 */
 }
 
 .score-box::before {
@@ -106,7 +103,7 @@ h1 {
 }
 
 /* =========================
-   HEADER
+    HEADER
 ========================= */
 .header {
     display: flex;
@@ -131,7 +128,7 @@ h1 {
 }
 
 /* =========================
-   PROGRESS BAR
+    PROGRESS BAR
 ========================= */
 .progress-bar {
     width: 100%;
@@ -150,7 +147,7 @@ h1 {
 }
 
 /* =========================
-   SCENARIO
+    SCENARIO
 ========================= */
 .scenario-box {
     margin-bottom: 25px;
@@ -165,7 +162,6 @@ h1 {
     font-size: 1.2rem;
     line-height: 1.6;
     color: var(--text-color);
-    /* 이미지와의 간격 */
     margin-bottom: 15px;
 }
 
@@ -186,7 +182,7 @@ h1 {
 }
 
 /* =========================
-   BUTTONS
+    BUTTONS
 ========================= */
 .btn {
     display: block;
@@ -218,7 +214,7 @@ a.btn {
 }
 
 /* =========================
-   OPTIONS
+    OPTIONS
 ========================= */
 .option-btn {
     background: #fff7ef;
@@ -251,7 +247,7 @@ a.btn {
 }
 
 /* =========================
-   FEEDBACK
+    FEEDBACK
 ========================= */
 .feedback {
     margin-top: 20px;
@@ -278,7 +274,7 @@ a.btn {
 }
 
 /* =========================
-   LEVEL GUIDE
+    LEVEL GUIDE
 ========================= */
 
 /* Level card */
@@ -332,9 +328,7 @@ a.btn {
 }
 
 #level-image {
-    /* 모바일에서는 부모 박스 너비를 넘지 않도록 제한 */
     max-width: 100%;
-    /* PC에서는 350px 크기 유지 */
     width: 350px;
     height: auto;
     display: block;
@@ -343,8 +337,8 @@ a.btn {
 }
 
 /* =========================
-   HANOK–MODERN THEME
-   (OVERRIDES)
+    HANOK–MODERN THEME
+    (OVERRIDES)
 ========================= */
 
 /* Background */
@@ -453,8 +447,8 @@ body::before {
 
 
 /* =========================
-   Start Page Characters
-   (ONLY start page)
+    START PAGE - CHARACTERS
+    (ONLY start page)
 ========================= */
 
 .start-characters {
@@ -489,11 +483,8 @@ body::before {
 }
 
 /* =========================
-   START PAGE – HANOK DOORS
-========================= */
-
-/* =========================
-   START PAGE ONLY
+    START PAGE – HANOK DOORS
+    (ONLY start page)
 ========================= */
 
 .start-page .start-wrapper {
@@ -507,8 +498,8 @@ body::before {
     overflow: hidden;
 }
 
-/* Doors */
 /* ===== Start Page Doors ===== */
+/* Doors */
 .start-page .door {
     position: fixed;
     top: 50%;
@@ -568,20 +559,18 @@ body::before {
 }
 
 /* =========================
-   SCREEN TRANSITION
+    SCREEN TRANSITION
 ========================= */
-/* 기본적으로 screen은 숨김 처리 */
+
 .screen {
     display: none;
     animation: fadeIn 0.5s ease;
 }
 
-/* active 클래스가 있을 때만 보임 */
 .screen.active {
     display: block;
 }
 
-/* src 속성이 비어있거나 없는 이미지는 숨김 처리 */
 img[src=""],
 img:not([src]) {
     display: none;
@@ -589,8 +578,9 @@ img:not([src]) {
 }
 
 /* =========================
-   INTRO PAGE STYLES
+    INTRO PAGE STYLES
 ========================= */
+
 .intro-content {
     text-align: left;
     font-size: 1.05rem;
@@ -603,7 +593,6 @@ img:not([src]) {
     margin-bottom: 15px;
 }
 
-/* 중요 메모 박스 */
 .note-box {
     background-color: #fff7ef;
     border-left: 4px solid var(--primary-color);
@@ -618,7 +607,6 @@ img:not([src]) {
    DESCRIPTION PAGE STYLES
 ========================= */
 
-/* 눈치 정의 박스 */
 .definition-box {
     background-color: #f1f3f5;
     padding: 15px;
