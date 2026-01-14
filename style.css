@@ -81,6 +81,15 @@ h2 {
     margin-bottom: 20px;
 }
 
+h1 {
+    white-space: nowrap;
+    /* 강제로 한 줄로 유지 */
+    /* 최소 1.4rem ~ 최대 2.5rem 사이에서, 화면 너비의 6% 크기로 자동 조절 */
+    font-size: clamp(1.4rem, 6vw, 2.5rem);
+    width: 100%;
+    /* 박스 꽉 채우기 */
+}
+
 .score-box::before {
     content: "🎀 ";
 }
@@ -358,8 +367,7 @@ h3 {
     color: #3b332a;
     font-weight: 600;
     letter-spacing: -0.01em;
-    white-space: nowrap;
-    font-size: clamp(1.2rem, 6vw, 2.5rem);
+
 }
 
 /* Category badge */
