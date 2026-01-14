@@ -107,7 +107,7 @@ export const quizData = [
         options: [
             "Bow and say 'Jal meogeot-seumnida' (Thank you for the meal) as you leave.",
             "Quietly leave a 10,000 won bill on the table and walk out.",
-            "Hand a cash tip directly to the staff member.'",
+            "Hand a cash tip directly to the staff member.",
             "Just take the receipt and leave."
         ],
         correctIndex: 0,
