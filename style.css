@@ -571,6 +571,13 @@ body::before {
     display: block;
 }
 
+/* src 속성이 비어있거나 없는 이미지는 숨김 처리 */
+img[src=""], 
+img:not([src]) {
+    display: none;
+    visibility: hidden;
+}
+
 /* =========================
    INTRO PAGE STYLES
 ========================= */
