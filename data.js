@@ -111,7 +111,7 @@ export const quizData = [
             "Just take the receipt and leave."
         ],
         correctIndex: 0,
-        explanation: "Korea has a no-tipping culture. A sincere bow and saying 'Jal meogeot-seumnida'(I ate well / Thank you for the meal) is the standard and most polite way to express gratitude to the staff and owner. In addition, tipping is not expected or required in Korea. Leaving money on the table or trying to hand cash to a server can be considered awkward, or they might think you simply forgot your change and will run after you to return it."
+        explanation: "Korea has a no-tipping culture. A sincere bow and saying 'Jal meogeot-seumnida'(I ate well / Thank you for the meal) is the standard and most polite way to express gratitude to the staff and owner. Tipping is not expected or required in Korea. Leaving money on the table or trying to hand cash to a server can be considered awkward, or they might think you simply forgot your change and will run after you to return it."
     },
     {
         id: 9,
