@@ -52,11 +52,11 @@ K-Nunchi-Project/
 
 ## 🚀 Troubleshooting & Optimization
 Key technical challenges faced and resolved during development:
-1. Image & Text Synchronization
+#### 1. Image & Text Synchronization
 - Issue: Network latency caused text to update before the corresponding scenario image loaded, resulting in a flickering effect.
 - Solution: Implemented an Image Preloading strategy using the Image() object. The screen update logic is triggered only after the onload event confirms the image is fully ready.
 
-2. Mobile Typography Layout
+#### 2. Mobile Typography Layout
 - Issue: Long titles were wrapping unexpectedly on narrow mobile screens, breaking the visual design.
 - Solution: Applied CSS white-space: nowrap combined with the clamp() function. This ensures the font size scales fluidly based on the viewport width (vw) while remaining on a single line.
 
